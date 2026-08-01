@@ -1,0 +1,167 @@
+<!DOCTYPE html><script type="application/json" id="cowork-artifact-meta">
+{
+  "name": "N200 Public",
+  "schemaVersion": 1,
+  "description": "N200 Momentum Strategy — public paper-book P&L (shareable). Caution Zone. Live since 1 Jul 2026.",
+  "mcpTools": [],
+  "mcpServerNames": []
+}
+</script>
+<html lang="en"><head><meta charset="UTF-8"><title>N200 Momentum — Public</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js" integrity="sha384-iU8HYtnGQ8Cy4zl7gbNMOhsDTTKX02BTXptVP/vqAWIaTfM7isw76iyZCsjL2eVi" crossorigin="anonymous"></script>
+<style>
+:root{color-scheme:light}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:13px;background:#f0f2f5;color:#1a1a2e;min-height:100vh}#app{max-width:1200px;margin:0 auto;padding:10px 12px}.hdr{display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:10px;padding:9px 14px;margin-bottom:8px;box-shadow:0 1px 4px rgba(0,0,0,.07)}.hdr h1{font-size:14px;font-weight:700;color:#111}.hdr p{font-size:11px;color:#777;margin-top:1px}.btn-row{display:flex;gap:7px;flex-shrink:0}.btn{padding:5px 13px;border-radius:6px;border:none;cursor:pointer;font-size:11.5px;font-weight:600}.btn-blue{background:#1d4ed8;color:#fff}.btn-gray{background:#f1f5f9;color:#374151;border:1px solid #dde1e7}.regime{border-radius:10px;padding:11px 16px;margin-bottom:8px;display:flex;align-items:center;gap:18px;color:#fff}.regime.caution{background:linear-gradient(90deg,#b45309,#d97706)}.regime.bear{background:linear-gradient(90deg,#991b1b,#ef4444)}.regime.bull{background:linear-gradient(90deg,#15803d,#22c55e)}.r-label{font-size:18px;font-weight:800}.r-sub{font-size:11px;opacity:.9;margin-top:2px}.r-stats{display:flex;gap:22px;margin-left:auto}.rstat{text-align:center}.rstat-v{font-size:15px;font-weight:700}.rstat-l{font-size:9.5px;opacity:.85;text-transform:uppercase}.cards{display:grid;grid-template-columns:repeat(6,1fr);gap:7px;margin-bottom:8px}.card{background:#fff;border-radius:8px;padding:9px 11px;box-shadow:0 1px 3px rgba(0,0,0,.06)}.card .lbl{font-size:9.5px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}.card .val{font-size:15px;font-weight:700}.card .sub{font-size:10px;color:#999;margin-top:1px}.g{color:#16a34a}.r{color:#dc2626}.a{color:#d97706}.b{color:#1d4ed8}.sector-row{background:#fff;border-radius:10px;padding:10px 14px;margin-bottom:8px;box-shadow:0 1px 3px rgba(0,0,0,.06)}.sector-row h3{font-size:10.5px;font-weight:700;text-transform:uppercase;color:#666;margin-bottom:8px}.sector-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}.sec-name{font-size:10px;color:#555;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sec-bar-bg{height:5px;background:#e5e7eb;border-radius:3px;overflow:hidden}.sec-bar-fill{height:100%;border-radius:3px}.sec-pct{font-size:11px;font-weight:700;margin-top:3px}.tabs-bar{display:flex;gap:3px;background:#fff;border-radius:10px 10px 0 0;padding:7px 11px 0;border-bottom:2px solid #e5e7eb}.tab-btn{padding:6px 14px;border:none;background:none;cursor:pointer;font-size:12px;font-weight:600;color:#888;border-bottom:2px solid transparent;margin-bottom:-2px;border-radius:4px 4px 0 0}.tab-btn.active{color:#1d4ed8;border-bottom-color:#1d4ed8;background:#eff6ff}.bdg{display:inline-block;padding:1px 6px;border-radius:9px;font-size:10px;font-weight:700;margin-left:4px}.bdg-g{background:#dcfce7;color:#15803d}.bdg-r{background:#fee2e2;color:#991b1b}.bdg-b{background:#dbeafe;color:#1d4ed8}.bdg-y{background:#fef9c3;color:#92400e}.tbl-panel{background:#fff;border-radius:0 0 10px 10px;box-shadow:0 2px 5px rgba(0,0,0,.06);overflow:hidden;margin-bottom:8px}.tab-content{display:none;padding:0}.tab-content.active{display:block}table{width:100%;border-collapse:collapse}thead th{background:#f8fafc;padding:7px 9px;text-align:left;font-size:10.5px;font-weight:700;text-transform:uppercase;color:#666;border-bottom:1px solid #e5e7eb;white-space:nowrap}th.num,td.num{text-align:right}tbody tr{border-bottom:1px solid #f1f5f9}tbody tr:hover{background:#f8fafc}tbody tr:last-child{border-bottom:none}td{padding:6px 9px;font-size:12px;color:#374151}td.sym{font-weight:700;color:#111;font-family:'SF Mono',Consolas,monospace;font-size:11.5px}td.co{color:#555;max-width:165px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11.5px}td.num{font-variant-numeric:tabular-nums;font-family:'SF Mono',Consolas,monospace;font-size:11px}.pill{display:inline-block;padding:1px 6px;border-radius:7px;font-size:10px;font-weight:600}.pill-D{background:#ede9fe;color:#6d28d9}.pill-C{background:#fef3c7;color:#92400e}.pill-G{background:#d1fae5;color:#065f46}.hold-tag{display:inline-block;padding:2px 7px;border-radius:4px;background:#dbeafe;color:#1d4ed8;font-size:10px;font-weight:700}.buy-tag{display:inline-block;padding:2px 7px;border-radius:4px;background:#dcfce7;color:#15803d;font-size:10px;font-weight:700}.sell-tag{display:inline-block;padding:2px 7px;border-radius:4px;background:#fee2e2;color:#991b1b;font-size:10px;font-weight:700}.new-tag{display:inline-block;padding:2px 7px;border-radius:4px;background:#d1fae5;color:#065f46;font-size:10px;font-weight:700;border:1px solid #6ee7b7}.watch-tag{display:inline-block;padding:2px 7px;border-radius:4px;background:#fed7aa;color:#9a3412;font-size:10px;font-weight:700;border:1px solid #fb923c}.exit-tag{display:inline-block;padding:2px 7px;border-radius:4px;background:#fee2e2;color:#991b1b;font-size:10px;font-weight:700;border:1px solid #fca5a5}.empty{text-align:center;padding:28px;color:#999;font-size:12.5px}.chart-row{display:grid;gap:10px;padding:14px}.chart-box{background:#f8fafc;border-radius:8px;padding:12px}.chart-box h4{font-size:11px;font-weight:700;color:#555;text-transform:uppercase;margin-bottom:8px}.chart-2{grid-template-columns:1fr 1fr}.pnl-cards{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;padding:14px 14px 0}.pnl-table{padding:0 14px 14px}.pnl-tbl-wrap{overflow-x:auto}tfoot td{font-weight:700;background:#f8fafc;border-top:2px solid #e5e7eb}.ratio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:14px}.ratio-card{background:#f8fafc;border-radius:8px;padding:12px 14px}.ratio-card h4{font-size:10.5px;font-weight:700;text-transform:uppercase;color:#666;margin-bottom:10px;border-bottom:1px solid #e5e7eb;padding-bottom:6px}.ratio-row{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid #f1f5f9;font-size:12px}.heatmap-wrap{padding:14px;overflow-x:auto}.heatmap-tbl{border-collapse:collapse;min-width:700px;width:100%}.heatmap-tbl th{font-size:10px;font-weight:700;color:#666;text-align:center;padding:5px 4px}.hm-cell{text-align:center;padding:5px 4px;font-size:11.5px;font-weight:600;border-radius:4px;min-width:52px}.hm-yr{font-size:11px;font-weight:700;color:#333;padding:5px 8px}.hm-ann{font-size:11.5px;font-weight:700;padding:5px 6px;border-radius:4px}.tlog-filters{padding:10px 14px;display:flex;gap:8px;border-bottom:1px solid #f1f5f9;flex-wrap:wrap}.tlog-filters select,.tlog-filters input{padding:4px 8px;border:1px solid #dde1e7;border-radius:5px;font-size:11.5px;background:#fff}.tlog-wrap{padding:0 14px 14px;overflow-x:auto;max-height:320px;overflow-y:auto}.footer{text-align:center;font-size:10.5px;color:#94a3b8;padding:10px}
+</style>
+</head><body>
+<div id="app"></div>
+<script>
+const PORTFOLIO={
+  capital:10000000,
+  _refreshedAt:"EOD 31-Jul-2026 · MA(12,60) EOD scan on NSE bhavcopy (148 names) · 7 held marked at EOD close · Index 102.42 (+0.08 vs 31-Jul open 102.34; -0.17 vs EOD 30-Jul 102.59) · TCS and UBL breached ratcheted stops → queued to exit at next open · TECHM & HCLTECH reclaimed their stops (held) · 1 new golden cross ASHOKLEY queued (Auto breadth 90%) · regime 🟠 Caution (Nifty50 -1.60% vs 200-DMA), VIX 11.76",
+  regime_at_entry:"Bear",
+  positions:[
+
+    {symbol:"TECHM",company:"Tech Mahindra",basket:"IT",entry_px:1509.0,shares:457,ltp:1651.3,_chg:1.93,entry_date:"2026-07-14",trail_stop:1645.27,exit_pending:false,note:"held — EOD 31-Jul ₹1,651.30 reclaimed the ₹1,645.27 ratcheted stop (opened below at ₹1,620); +9.43% vs entry"},
+    {symbol:"HCLTECH",company:"HCL Technologies",basket:"IT",entry_px:1205.0,shares:593,ltp:1346.9,_chg:2.22,entry_date:"2026-07-20",trail_stop:1334.74,exit_pending:false,note:"held — EOD 31-Jul ₹1,346.90 reclaimed the ₹1,334.74 stop (opened below at ₹1,317.70); +11.78% vs entry, top of book"},
+    {symbol:"PNB",company:"Punjab National Bank",basket:"Finance",entry_px:110.0,shares:6493,ltp:112.71,_chg:0.63,entry_date:"2026-07-23",trail_stop:111.71,exit_pending:false,note:"held — EOD 31-Jul ₹112.71 (+2.46% vs entry), stop ratcheted to ₹111.71"},
+    {symbol:"HAVELLS",company:"Havells India",basket:"Industrials",entry_px:1201.5,shares:594,ltp:1260.7,_chg:-1.04,entry_date:"2026-07-23",trail_stop:1247.49,exit_pending:false,note:"held — EOD 31-Jul ₹1,260.70 (+4.93% vs entry), clears ₹1,247.49 stop"},
+    {symbol:"UBL",company:"United Breweries",basket:"Consumer",entry_px:1418.0,shares:511,ltp:1418.8,_chg:-2.15,entry_date:"2026-07-27",trail_stop:1423.49,exit_pending:true,note:"⚠️ EXIT PENDING — EOD 31-Jul ₹1,418.80 < ₹1,423.49 stop; queued to sell at next open (~flat, +0.06% vs entry)"},
+    {symbol:"HEROMOTOCO",company:"Hero MotoCorp",basket:"Auto",entry_px:5108.0,shares:140,ltp:5386.0,_chg:0.2,entry_date:"2026-07-28",trail_stop:5328.65,exit_pending:false,note:"held — EOD 31-Jul ₹5,386.00 (+5.44% vs entry), stop ratcheted to ₹5,328.65"},
+    {symbol:"TCS",company:"Tata Consultancy",basket:"IT",entry_px:2325.0,shares:311,ltp:2365.6,_chg:-0.81,entry_date:"2026-07-28",trail_stop:2413.48,exit_pending:true,note:"⚠️ EXIT PENDING — EOD 31-Jul ₹2,365.60 < ₹2,413.48 stop; queued to sell at next open (+1.75% vs entry)"}
+  ],
+  pending_buys:[
+    {symbol:"ASHOKLEY",company:"Ashok Leyland",basket:"Auto",signal_px:166.18,shares:4298,trail_stop:164.23,note:"Golden cross EOD 31-Jul · Auto breadth 90% · queued to execute at next open"}
+  ]
+};
+const TRADE_LOG=[
+  {date:"2026-07-31",symbol:"TCS",type:"SELL",basket:"IT",px:0,shares:311,amount:0,status:"PENDING",note:"Stop breach — EOD 31-Jul ₹2,365.60 < ratcheted σ=0.5 stop ₹2,413.48; will execute at next open. +1.75% vs entry ₹2,325."},
+  {date:"2026-07-31",symbol:"UBL",type:"SELL",basket:"Consumer",px:0,shares:511,amount:0,status:"PENDING",note:"Stop breach — EOD 31-Jul ₹1,418.80 < ratcheted σ=0.5 stop ₹1,423.49; will execute at next open. ~flat +0.06% vs entry ₹1,418."},
+  {date:"2026-07-31",symbol:"COLPAL",type:"SELL",basket:"Consumer",px:2109.50,shares:334,amount:704573,status:"CLOSED",pnl_pct:-1.696,note:"Auto-executed at 31-Jul open ₹2,109.50 | stop_breach — 30-Jul close ₹2,084.80 < ratcheted σ=0.5 stop ₹2,141.02; exit fill -1.70% vs entry ₹2,145.90 (-₹12.2K)."},
+  {date:"2026-07-29",symbol:"COLPAL",type:"BUY",basket:"Consumer",px:2145.90,shares:334,amount:716731,status:"CLOSED",note:"Golden cross EOD 28-Jul → executed 29-Jul open ₹2,145.90 · stop-breached EOD 30-Jul ₹2,084.80 → exited 31-Jul open ₹2,109.50 (-1.70%). Two-day round trip."},
+  {date:"2026-07-28",symbol:"HEROMOTOCO",type:"BUY",basket:"Auto",px:5108.00,shares:140,amount:715120,status:"OPEN",note:"Auto-executed at 28-Jul open ₹5,108.00 · golden cross EOD 27-Jul, Auto breadth 77.8% · EOD 31-Jul ₹5,386.00 (+5.44%) — held · stop ₹5,328.65"},
+  {date:"2026-07-28",symbol:"TCS",type:"BUY",basket:"IT",px:2325.00,shares:311,amount:723075,status:"OPEN",note:"Auto-executed at 28-Jul open ₹2,325.00 · golden cross EOD 27-Jul, IT breadth 88.9% · EOD 31-Jul ₹2,365.60 (+1.75%) — stop ₹2,413.48 breached, queued to exit at next open"},
+  {date:"2026-07-27",symbol:"UBL",       type:"BUY", basket:"Consumer",     px:1418.00, shares:511,  amount:724598, status:"OPEN",   note:"Golden cross EOD 22/23-Jul → executed open 27-Jul ₹1,418.00 · Consumer breadth · EOD 31-Jul ₹1,418.80 (+0.06%) — stop ₹1,423.49 breached, queued to exit at next open"},
+  {date:"2026-07-27",symbol:"ABB",       type:"SELL",basket:"Capital Goods",px:7419.00, shares:99,   amount:734481, status:"CLOSED", pnl_pct:2.892, note:"Stop breach EOD 24-Jul → executed open 27-Jul ₹7,419.00 (+2.89%, +₹20.6K). Opened ₹1 above the ₹7,418 stop but exit filled per next-open rule."},
+  {date:"2026-07-27",symbol:"PETRONET",  type:"SELL",basket:"Cyclical",     px:275.10,  shares:2574, amount:708107, status:"CLOSED", pnl_pct:-0.865,note:"Stop breach + death cross → executed open 27-Jul ₹275.10 (-0.87%, -₹6.2K). Round trip on the 23-Jul golden-cross fill."},
+  {date:"2026-07-23",symbol:"VOLTAS",    type:"SELL",basket:"Growth",       px:1302.00, shares:526,  amount:684852, status:"CLOSED", pnl_pct:-3.762, note:"Stop breach EOD 22-Jul → executed open 23-Jul ₹1,302.00 (-3.76%, -₹26.8K). Bounced to ₹1,327 by 24-Jul — mild miss."},
+  {date:"2026-07-23",symbol:"SBICARD",   type:"SELL",basket:"Finance",      px:626.85,  shares:1107, amount:693923, status:"CLOSED", pnl_pct:-2.223, note:"Stop breach EOD 22-Jul → executed open 23-Jul ₹626.85 (-2.22%, -₹15.8K). ₹618.75 by 24-Jul — good exit."},
+  {date:"2026-07-23",symbol:"ACC",       type:"SELL",basket:"Cyclical",     px:1354.20, shares:516,  amount:698767, status:"CLOSED", pnl_pct:-2.576, note:"Stop breach EOD 22-Jul → executed open 23-Jul ₹1,354.20 (-2.58%, -₹18.5K). ₹1,340.90 by 24-Jul — good exit."},
+  {date:"2026-07-23",symbol:"AMBUJACEM", type:"SELL",basket:"Cement",       px:428.65,  shares:1628, amount:697842, status:"CLOSED", pnl_pct:-1.866, note:"Stop breach EOD 22-Jul → executed open 23-Jul ₹428.65 (-1.87%, -₹13.3K)."},
+  {date:"2026-07-23",symbol:"PERSISTENT",type:"SELL",basket:"IT",           px:5095.00, shares:137,  amount:698015, status:"CLOSED", pnl_pct:-1.715, note:"Stop breach EOD 22-Jul → executed open 23-Jul ₹5,095.00 (-1.72%, -₹12.2K). Rebounded to ₹5,200 by 24-Jul — small miss."},
+  {date:"2026-07-23",symbol:"PNB",       type:"BUY", basket:"Finance",      px:110.00,  shares:6493, amount:714230, status:"OPEN",   note:"Golden cross EOD 22-Jul → executed open 23-Jul ₹110.00 · EOD 31-Jul ₹112.71 (+2.46%) — held · stop ₹111.71"},
+  {date:"2026-07-23",symbol:"HAVELLS",   type:"BUY", basket:"Capital Goods",px:1201.50, shares:594,  amount:713691, status:"OPEN",   note:"Golden cross EOD 22-Jul → executed open 23-Jul ₹1,201.50 · EOD 31-Jul ₹1,260.70 (+4.93%) — held · stop ₹1,247.49"},
+  {date:"2026-07-23",symbol:"PETRONET",  type:"BUY", basket:"Cyclical",     px:277.50,  shares:2574, amount:714285, status:"CLOSED", note:"Golden cross EOD 22-Jul → executed open 23-Jul ₹277.50 · stop-breached same day, exited open 27-Jul ₹275.10 (-0.87%)"},
+  {date:"2026-07-21",symbol:"SBICARD",   type:"BUY", basket:"Finance",      px:641.10,  shares:1107, amount:709698, status:"CLOSED", note:"Bought open 21-Jul ₹641.10 → stopped out open 23-Jul ₹626.85 (-2.22%). Two-day round trip."},
+  {date:"2026-07-21",symbol:"VOLTAS",    type:"BUY", basket:"Growth",       px:1352.90, shares:526,  amount:711625, status:"CLOSED", note:"Bought open 21-Jul ₹1,352.90 → stopped out open 23-Jul ₹1,302.00 (-3.76%). Two-day round trip."},
+  {date:"2026-07-21",symbol:"MAPMYINDIA",type:"SELL",basket:"Growth",       px:1095.00, shares:646,  amount:707370, status:"CLOSED", pnl_pct:2.624, note:"Stop breach EOD 20-Jul (₹1,097.00 < ₹1,154.82) → executed open 21-Jul ₹1,095.00 (+2.62%, +₹18.1K). EOD 31-Jul ₹1,181.65 — small miss."},
+  {date:"2026-07-20",symbol:"ACC",       type:"SELL",basket:"Cyclical",     px:0,       shares:516,  amount:0,      status:"CANCELLED",note:"Open 20-Jul gap ₹1,375 < stop ₹1,376.68, but EOD ₹1,381.40 reclaimed the stop → exit cancelled. Stop breached again EOD 22-Jul."},
+  {date:"2026-07-20",symbol:"AMBUJACEM", type:"BUY", basket:"Cement",       px:436.80,  shares:1628, amount:711110, status:"CLOSED", note:"Bought open 20-Jul ₹436.80 → stopped out open 23-Jul ₹428.65 (-1.87%)."},
+  {date:"2026-07-20",symbol:"PERSISTENT",type:"BUY", basket:"IT",           px:5183.90, shares:137,  amount:710194, status:"CLOSED", note:"Bought open 20-Jul ₹5,183.90 → stopped out open 23-Jul ₹5,095.00 (-1.72%)."},
+  {date:"2026-07-20",symbol:"HCLTECH",   type:"BUY", basket:"IT",           px:1205.00, shares:593,  amount:714565, status:"OPEN",   note:"Golden cross EOD 17-Jul · executed open 20-Jul ₹1,205 · stop ₹1,334.74 · EOD 31-Jul ₹1,346.90 (+11.78%) — held, best in book"},
+  {date:"2026-07-20",symbol:"SBILIFE",   type:"SELL",basket:"Defensive",    px:1831.00, shares:382,  amount:699442, status:"CLOSED", pnl_pct:-2.138,note:"Stop breach EOD 17-Jul → executed open 20-Jul ₹1,831 (-2.14%)"},
+  {date:"2026-07-20",symbol:"ULTRACEMCO",type:"SELL",basket:"Cyclical",     px:11768.00,shares:60,   amount:706080, status:"CLOSED", pnl_pct:1.887, note:"Stop breach EOD 17-Jul → executed open 20-Jul ₹11,768 (+1.89%)"},
+  {date:"2026-07-20",symbol:"PAYTM",     type:"SELL",basket:"Growth",       px:1350.00, shares:573,  amount:773550, status:"CLOSED", pnl_pct:12.154,note:"Stop breach EOD 17-Jul → executed open 20-Jul ₹1,350 (+12.15%)"},
+  {date:"2026-07-17",symbol:"ABB",      type:"BUY", basket:"Capital Goods",px:7210.50,shares:99,   amount:713840, status:"CLOSED",   note:"Auto-executed at open · EOD 16-Jul golden cross · stop ₹7,418.00 · stop-breached EOD 24-Jul ₹7,375.50 → exit 27-Jul open ₹7,419.00"},
+  {date:"2026-07-16",symbol:"SBILIFE",  type:"BUY", basket:"Defensive",    px:1871.00,shares:382,  amount:714722, status:"CLOSED",note:"Auto-executed at open · EOD 15-Jul golden cross · Insurance 75.0% breadth · exited open 20-Jul"},
+  {date:"2026-07-16",symbol:"ACC",      type:"BUY", basket:"Cyclical",     px:1390.00,shares:516,  amount:717240, status:"CLOSED", note:"Bought open 16-Jul ₹1,390 → stopped out open 23-Jul ₹1,354.20 (-2.58%). Survived one earlier stop scare on 20-Jul."},
+  {date:"2026-07-16",symbol:"MPHASIS",  type:"SELL",basket:"IT",           px:2359.00,shares:297,  amount:700623, status:"CLOSED",pnl_pct:1.563, note:"Stop breach EOD 15-Jul → executed open ₹2,359 · +1.56%"},
+  {date:"2026-07-16",symbol:"KFINTECH", type:"SELL",basket:"Fintech",      px:897.60, shares:743,  amount:666917, status:"CLOSED",pnl_pct:-3.276,note:"Stop breach EOD 15-Jul → executed open ₹897.60 · -3.28%"},
+  {date:"2026-07-16",symbol:"ABB",      type:"BUY", basket:"Capital Goods",px:0,      shares:99,   amount:714286, status:"CLOSED",note:"Signal EOD 16-Jul · executed at open 17-Jul at ₹7,210.50"},
+  {date:"2026-07-15",symbol:"ULTRACEMCO",type:"BUY",basket:"Cyclical",     px:11550.00,shares:60,  amount:693000, status:"CLOSED",note:"Auto-executed at open · EOD 14-Jul golden cross · exited open 20-Jul +1.89%"},
+  {date:"2026-07-14",symbol:"KFINTECH", type:"BUY", basket:"Fintech",      px:928.00, shares:743,  amount:689104, status:"CLOSED",note:"Auto-executed at open · exited at open 16-Jul · -3.28%"},
+  {date:"2026-07-14",symbol:"TECHM",    type:"BUY", basket:"IT",           px:1509.00,shares:457,  amount:689613, status:"OPEN",   note:"EOD 31-Jul ₹1,651.30 (+9.43%) — held · reclaimed ₹1,645.27 stop"},
+  {date:"2026-07-13",symbol:"MAPMYINDIA",type:"BUY",basket:"Growth",       px:1067.00,shares:646,  amount:689282, status:"CLOSED", note:"Exited open 21-Jul ₹1,095.00 · +2.62%"},
+  {date:"2026-07-13",symbol:"MPHASIS",  type:"BUY", basket:"IT",           px:2322.70,shares:297,  amount:689842, status:"CLOSED",note:"Exited at open 16-Jul ₹2,359 +1.56%"},
+  {date:"2026-07-10",symbol:"ALKEM",      type:"SELL",basket:"Pharma",     px:5698.50,shares:125,  amount:712313, status:"CLOSED",pnl_pct:3.41,  note:"Trailing stop breached EOD Jul 9 — exited at market open"},
+  {date:"2026-07-09",symbol:"ASHOKLEY",  type:"SELL",basket:"Auto",        px:157.10, shares:4157, amount:652987, status:"CLOSED",pnl_pct:-5.34, note:"Trailing stop hit EOD Jul 8 — exited at open"},
+  {date:"2026-07-07",symbol:"BAJAJFINSV",type:"SELL",basket:"Defensive",   px:1872.10,shares:384,  amount:718886, status:"CLOSED",pnl_pct:4.14,  note:"Trailing stop hit EOD Jul 6"},
+  {date:"2026-07-03",symbol:"ASHOKLEY",  type:"BUY", basket:"Auto",        px:165.97, shares:4157, amount:690040, status:"CLOSED",note:"Exited EOD Jul 8"},
+  {date:"2026-07-03",symbol:"ALKEM",     type:"BUY", basket:"Pharma",      px:5510.50, shares:125, amount:688813, status:"CLOSED",note:"Exited EOD Jul 9"},
+  {date:"2026-07-03",symbol:"M&MFIN",    type:"SELL",basket:"Defensive",   px:322.90, shares:2189, amount:706829, status:"CLOSED",pnl_pct:2.46,  note:""},
+  {date:"2026-07-01",symbol:"GODFRYPHLP",type:"SELL",basket:"Defensive",   px:2159.60,shares:330,  amount:712668, status:"CLOSED",note:""},
+  {date:"2026-07-01",symbol:"JSWSTEEL",  type:"SELL",basket:"Cyclical",    px:1216.20,shares:585,  amount:711477, status:"CLOSED",note:""},
+  {date:"2026-07-01",symbol:"M&MFIN",    type:"BUY", basket:"Defensive",   px:315.15, shares:2189, amount:689763, status:"CLOSED",note:"Exited Jul 3"},
+  {date:"2026-07-01",symbol:"BAJAJFINSV",type:"BUY", basket:"Defensive",   px:1797.60,shares:384,  amount:690278, status:"CLOSED",note:"Exited EOD Jul 6"},
+  {date:"2026-07-01",symbol:"PAYTM",     type:"BUY", basket:"Growth",      px:1203.70,shares:573,  amount:689319, status:"CLOSED",note:"Exited open 20-Jul ₹1,350 +12.15%"}
+];
+const n=(v,d=2)=>(v==null||isNaN(v))?'--':Number(v).toFixed(d);
+const inr=(v)=>v==null?'--':'₹'+Math.abs(v).toLocaleString('en-IN',{maximumFractionDigits:0});
+const pill=(b)=>{const cls=b==='Defensive'||b==='Pharma'||b==='Finance'||b==='FMCG'||b==='Cement'||b==='Health'||b==='Consumer'||b==='Insurance'?'D':b==='Cyclical'||b==='Metals'||b==='Energy'||b==='Auto'||b==='Infra'?'C':'G';const lbl=cls==='D'?'DEF':cls==='C'?'CYC':'GRW';return`<span class="pill pill-${cls}">${lbl}</span>`};
+let charts={};
+function destroyChart(id){if(charts[id]){charts[id].destroy();delete charts[id];}}
+function getLTP(p){return p.ltp;}
+function renderPublic(){
+  const pos=PORTFOLIO.positions;let ti=0,tv=0;
+  const rows=pos.map(p=>{const cp=getLTP(p);const cost=p.entry_px*p.shares;const cur=cp*p.shares;const pnl=cur-cost;const pp=(pnl/cost*100);const prt=(cost/PORTFOLIO.capital*100);ti+=cost;tv+=cur;
+    const aboveStop=cp>p.trail_stop;
+    const isNew=p.is_new;
+    const isExit=p.exit_pending;
+    let rowStyle='';
+    if(isExit) rowStyle=' style="background:#fff1f2"';
+    else if(isNew) rowStyle=' style="background:#f0fdf4"';
+    else if(!aboveStop) rowStyle=' style="background:#fff7ed"';
+    let tag='';
+    if(isExit) tag='<span class="exit-tag">⚠️ EXIT</span>';
+    else if(isNew) tag='<span class="new-tag">✅ NEW @ open</span>';
+    else if(!aboveStop) tag='<span class="watch-tag">⚠️ WATCH</span>';
+    else tag='<span class="hold-tag">HOLD</span>';
+    return{...p,cp,cost,cur,pnl,pp,prt,aboveStop,isNew,isExit,rowStyle,tag};});
+  const tpnl=tv-ti;const tpct=tpnl/ti*100;
+  const ct=TRADE_LOG.filter(t=>t.status==='CLOSED'&&t.pnl_pct!=null&&t.type==='SELL');
+  const tb=ct.reduce((s,t)=>{const c=t.amount/(1+t.pnl_pct/100);return s+Math.round(c*t.pnl_pct/100);},0);
+  const pv=PORTFOLIO.capital+tb+tpnl;
+  const cash=pv-tv;
+  const pv_idx=(pv/PORTFOLIO.capital*100).toFixed(2);
+  const liveBar=`<div class="regime caution" style="border-radius:10px;margin-bottom:12px"><div class="r-label" style="font-size:17px">N200 Momentum Strategy</div><div class="r-sub" style="margin-left:auto;font-size:14px;font-weight:700;opacity:1">🟠 Caution Zone</div></div>`;
+  const cards=`<div class="pnl-cards">
+    <div class="card"><div class="lbl">Portfolio Value</div><div class="val ${pv>=PORTFOLIO.capital?'g':'r'}">${inr(pv)}</div><div class="sub ${pv>=PORTFOLIO.capital?'g':'r'}">${pv>=PORTFOLIO.capital?'+':''}${(+pv_idx-100).toFixed(2)}% vs ₹1Cr capital</div></div>
+    <div class="card"><div class="lbl">Invested</div><div class="val b">${inr(ti)}</div><div class="sub">${(ti/PORTFOLIO.capital*100).toFixed(1)}% deployed</div></div>
+    <div class="card"><div class="lbl">Cash</div><div class="val g">${inr(cash)}</div><div class="sub">${(cash/PORTFOLIO.capital*100).toFixed(1)}% idle</div></div>
+    <div class="card"><div class="lbl">Open P&amp;L</div><div class="val ${tpnl>=0?'g':'r'}">${tpnl>=0?'+':''}${inr(tpnl)}</div><div class="sub">${tpnl>=0?'+':''}${n(tpct)}%</div></div>
+    <div class="card"><div class="lbl">Booked P&amp;L</div><div class="val ${tb>=0?'g':'r'}">${tb>=0?'+':''}${inr(tb)}</div><div class="sub">${ct.length} closed trades</div></div>
+    <div class="card"><div class="lbl">Positions</div><div class="val">7<span style="font-size:11px;color:#aaa">/14</span></div><div class="sub" style="color:#16a34a">7 held · 2 exiting</div></div>
+  </div>`;
+  const trows=rows.map(r=>{const chg=r._chg??null;
+    const ls=chg!=null?`<b>${n(r.cp)}</b> <span style="font-size:10px;color:${chg>=0?'#16a34a':'#dc2626'}">${chg>=0?'+':''}${chg.toFixed(2)}%</span>`:`<b>${n(r.cp)}</b>`;
+    const stopCol=r.aboveStop?'#16a34a':'#dc2626';
+    return`<tr${r.rowStyle}><td class="sym">${r.symbol}${r.isNew?' <span class="new-tag" style="font-size:9px">NEW</span>':r.isExit?' <span class="exit-tag" style="font-size:9px">⚠️EXIT</span>':''}</td><td class="co">${r.company}</td><td>${pill(r.basket)}</td>
+    <td class="num">${r.entry_date}</td><td class="num">${n(r.entry_px)}</td><td class="num">${r.shares.toLocaleString('en-IN')}</td>
+    <td class="num">${inr(r.cost)}</td><td class="num">${n(r.prt,1)}%</td>
+    <td class="num">${ls}</td>
+    <td class="num" style="color:${stopCol};font-size:10px"><b>${n(r.trail_stop)}</b></td>
+    <td class="num">${inr(r.cur)}</td>
+    <td class="num ${r.pnl>=0?'g':'r'}">${r.pnl>=0?'+':''}${inr(r.pnl)}</td>
+    <td class="num ${r.pp>=0?'g':'r'}">${r.pp>=0?'+':''}${n(r.pp)}%</td>
+    <td>${r.tag}</td></tr>`;}).join('');
+  const tfoot=`<tfoot><tr><td colspan="6" style="font-weight:700">TOTAL (${pos.length} positions)</td><td class="num">${inr(ti)}</td><td></td><td colspan="2"></td><td class="num">${inr(tv)}</td>
+    <td class="num ${tpnl>=0?'g':'r'}">${tpnl>=0?'+':''}${inr(tpnl)}</td><td class="num ${tpct>=0?'g':'r'}">${tpct>=0?'+':''}${n(tpct)}%</td><td></td></tr></tfoot>`;
+  const pendRows=PORTFOLIO.pending_buys.map(b=>`<tr style="background:#fffbeb"><td class="sym">${b.symbol}</td><td class="co">${b.company}</td><td>${pill(b.basket)}</td><td class="num">${n(b.signal_px)}</td><td class="num">${b.shares.toLocaleString('en-IN')}</td><td class="num">${inr(b.signal_px*b.shares)}</td><td class="num" style="color:#555;font-size:10px"><b>${n(b.trail_stop)}</b></td><td><span class="buy-tag">📋 EXEC AT OPEN</span></td></tr>`).join('');
+  const aggMap={};
+  for(const t of ct){const cost=t.amount/(1+t.pnl_pct/100);const pi=Math.round(cost*t.pnl_pct/100);if(!aggMap[t.symbol])aggMap[t.symbol]={symbol:t.symbol,basket:t.basket,trades:[],totalCost:0,totalPi:0};aggMap[t.symbol].trades.push({...t,_cost:cost,_pi:pi});aggMap[t.symbol].totalCost+=cost;aggMap[t.symbol].totalPi+=pi;}
+  let bW=0,bL=0;
+  const brows=Object.values(aggMap).map(a=>{const pi=a.totalPi;const pct=pi/a.totalCost*100;if(pi>=0)bW++;else bL++;const pc=pi>=0?'g':'r';
+    const sells=a.trades.filter(t=>t.type==='SELL');const buysInCt=a.trades.filter(t=>t.type==='BUY');
+    const ep=buysInCt.length?n(buysInCt[buysInCt.length-1].px):'--';
+    const xp=sells.length?n(sells[0].px):'--';
+    const dates=a.trades.map(t=>t.date).sort();
+    const dateStr=dates.length>1?dates[0]+' – '+dates[dates.length-1]:dates[0];
+    return`<tr><td class="num" style="font-size:10px;white-space:nowrap">${dateStr}</td><td class="sym">${a.symbol}</td><td>${pill(a.basket)}</td>
+      <td class="num">${ep}</td><td class="num">${xp}</td><td class="num">${a.trades.map(t=>t.shares.toLocaleString('en-IN')).join(' + ')}</td>
+      <td class="num">${inr(Math.round(a.totalCost))}</td><td class="num ${pc}">${pi>=0?'+':''}${inr(pi)}</td><td class="num ${pc}">${pct>=0?'+':''}${n(pct)}%</td></tr>`;}).join('');
+  return`${liveBar}${cards}
+  <div class="chart-row chart-2" style="padding-top:0"><div class="chart-box"><h4>Allocation (7 positions)</h4><canvas id="c-alloc" style="max-height:180px"></canvas></div><div class="chart-box"><h4>P&amp;L % per position</h4><canvas id="c-pos-pnl" style="max-height:180px"></canvas></div></div>
+  <div class="pnl-table"><div style="font-size:13px;font-weight:700;color:#374151;padding:0 2px 8px;border-bottom:2px solid #e5e7eb">Open Positions</div>
+  <div class="pnl-tbl-wrap"><table><thead><tr><th>Symbol</th><th>Company</th><th>Basket</th><th class="num">Entry</th><th class="num">Entry Px</th><th class="num">Shares</th><th class="num">Amount</th><th class="num">%Port</th><th class="num">EOD Close</th><th class="num">Trail Stop</th><th class="num">Cur Val</th><th class="num">P&amp;L ₹</th><th class="num">P&amp;L%</th><th>Status</th></tr></thead><tbody>${trows}</tbody>${tfoot}</table></div></div>
+  ${pendRows?`<div class="pnl-table" style="margin-top:16px"><div style="font-size:13px;font-weight:700;color:#374151;padding:0 2px 8px;border-bottom:2px solid #e5e7eb">Queued Buys — pending execution at next open</div>
+  <div class="pnl-tbl-wrap"><table><thead><tr><th>Symbol</th><th>Company</th><th>Basket</th><th class="num">Signal Px</th><th class="num">Shares</th><th class="num">Notional</th><th class="num">Stop</th><th>Status</th></tr></thead><tbody>${pendRows}</tbody></table></div></div>`:''}
+  <div class="pnl-table" style="margin-top:16px"><div style="display:flex;align-items:baseline;gap:14px;padding:0 2px 8px;border-bottom:2px solid #e5e7eb"><span style="font-size:13px;font-weight:700;color:#374151">Booked P&amp;L</span><span style="font-size:12px;color:${tb>=0?'#16a34a':'#dc2626'};font-weight:700">${tb>=0?'+':''}${inr(tb)}</span><span style="font-size:11px;color:#94a3b8">${bW}W/${bL}L</span></div>
+  <div class="pnl-tbl-wrap"><table><thead><tr><th>Exit Date</th><th>Symbol</th><th>Basket</th><th class="num">Entry</th><th class="num">Exit</th><th class="num">Shares</th><th class="num">Cost</th><th class="num">P&amp;L ₹</th><th class="num">P&amp;L%</th></tr></thead><tbody>${brows}</tbody></table></div></div><div style="padding:12px 16px;margin-top:4px;font-size:10.5px;color:#94a3b8;line-height:1.5;border-top:1px solid #eef2f6">Disclaimer: For information only — not investment advice, an offer, or a solicitation. Simulated / paper portfolio: no client capital is managed and no live trades have been executed. Returns are hypothetical and gross of fees, taxes and transaction costs. Simulated and past performance is not indicative of future results; equity investments carry risk of loss.</div>`;}
+function initPnLCharts(){const pos=PORTFOLIO.positions;
+  const colors=['#3b82f6','#10b981','#8b5cf6','#f59e0b','#ec4899','#06b6d4','#84cc16','#f43f5e'];
+  destroyChart('alloc');charts['alloc']=new Chart(document.getElementById('c-alloc'),{type:'doughnut',data:{labels:pos.map(p=>p.symbol),datasets:[{data:pos.map(p=>+(p.entry_px*p.shares).toFixed(0)),backgroundColor:colors,borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{font:{size:10}}}}}});
+  destroyChart('pos-pnl');const pnls=pos.map(p=>+((getLTP(p)-p.entry_px)/p.entry_px*100).toFixed(2));
+  charts['pos-pnl']=new Chart(document.getElementById('c-pos-pnl'),{type:'bar',data:{labels:pos.map(p=>p.symbol),datasets:[{label:'P&L%',data:pnls,backgroundColor:pnls.map(v=>v>=0?'rgba(22,163,74,0.7)':'rgba(220,38,38,0.7)'),borderColor:pnls.map(v=>v>=0?'#15803d':'#991b1b'),borderWidth:1}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{ticks:{callback:v=>v+'%'}}}}});}
+document.getElementById('app').innerHTML='<div class="tbl-panel" style="border-radius:10px">'+renderPublic()+'</div>';
+setTimeout(initPnLCharts,60);
+</script>
+</body></html>
