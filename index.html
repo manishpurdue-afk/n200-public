@@ -13,22 +13,22 @@
 </head><body><div id="app"></div><script>
 const PORTFOLIO={
   capital:10000000,
-  _refreshedAt:"EOD 03-Aug-2026 · strong tape (Nifty50 +1.6% to 24,774.30). All 6 held clear ratcheted σ=0.5 stops — no exits. Open P&L +₹306.9K (+7.18%). 1 new golden cross: APLAPOLLO (Metals breadth 90%) queued for 4-Aug open. Index 103.71 (+0.97 vs 3-Aug open 102.74). Booked +₹64.0K (20 closed). 🟠 Caution (Nifty50 -0.02% vs 200-DMA), VIX 11.93",
+  _refreshedAt:"Open 04-Aug-2026 · executed at NSE open · APLAPOLLO bought ₹1,956.90 (367 sh, Metals breadth 90%, stop ₹1,934.71; signal ₹1,941.50, +0.79% slippage) · 6 held re-marked at open, all clear stops · Index 103.78 (+0.07 vs 3-Aug EOD 103.71) · Booked +₹64.0K (20 closed) · regime 🟠 Caution (Nifty50 -0.3% vs 200-DMA), VIX 11.93",
   regime_at_entry:"Bear",
   positions:[
 
-    {symbol:"TECHM",company:"Tech Mahindra",basket:"IT",entry_px:1509.0,shares:457,ltp:1649.0,_chg:-0.87,entry_date:"2026-07-14",trail_stop:1645.27,exit_pending:false,note:"held — 3-Aug EOD ₹1,649.00 (+9.28% vs entry), clears ₹1,645.27 stop"},
-    {symbol:"HCLTECH",company:"HCL Technologies",basket:"IT",entry_px:1205.0,shares:593,ltp:1377.0,_chg:1.85,entry_date:"2026-07-20",trail_stop:1360.35,exit_pending:false,note:"held — 3-Aug EOD ₹1,377.00 (+14.27% vs entry), clears ₹1,360.35 stop"},
-    {symbol:"PNB",company:"Punjab National Bank",basket:"Finance",entry_px:110.0,shares:6493,ltp:113.0,_chg:-0.01,entry_date:"2026-07-23",trail_stop:112.0,exit_pending:false,note:"held — 3-Aug EOD ₹113.00 (+2.73% vs entry), clears ₹112.00 stop"},
-    {symbol:"HAVELLS",company:"Havells India",basket:"Industrials",entry_px:1201.5,shares:594,ltp:1285.0,_chg:1.83,entry_date:"2026-07-23",trail_stop:1270.95,exit_pending:false,note:"held — 3-Aug EOD ₹1,285.00 (+6.95% vs entry), clears ₹1,270.95 stop"},
-    {symbol:"HEROMOTOCO",company:"Hero MotoCorp",basket:"Auto",entry_px:5108.0,shares:140,ltp:5460.0,_chg:0.65,entry_date:"2026-07-28",trail_stop:5403.3,exit_pending:false,note:"held — 3-Aug EOD ₹5,460.00 (+6.89% vs entry), clears ₹5,403.30 stop"},
-    {symbol:"ASHOKLEY",company:"Ashok Leyland",basket:"Auto",entry_px:169.28,shares:4298,ltp:174.55,_chg:3.11,entry_date:"2026-08-03",trail_stop:172.48,exit_pending:false,is_new:true,note:"held — bought 3-Aug open ₹169.28, EOD ₹174.55 (+3.11%), clears ₹172.48 stop"}
+    {symbol:"TECHM",company:"Tech Mahindra",basket:"IT",entry_px:1509.0,shares:457,ltp:1652.9,_chg:0.24,entry_date:"2026-07-14",trail_stop:1645.27,exit_pending:false,note:"held — 4-Aug open ₹1,652.90 (+9.54% vs entry), clears ₹1,645.27 stop"},
+    {symbol:"HCLTECH",company:"HCL Technologies",basket:"IT",entry_px:1205.0,shares:593,ltp:1375.7,_chg:-0.09,entry_date:"2026-07-20",trail_stop:1360.35,exit_pending:false,note:"held — 4-Aug open ₹1,375.70 (+14.17% vs entry), clears ₹1,360.35 stop"},
+    {symbol:"PNB",company:"Punjab National Bank",basket:"Finance",entry_px:110.0,shares:6493,ltp:113.49,_chg:0.43,entry_date:"2026-07-23",trail_stop:112.0,exit_pending:false,note:"held — 4-Aug open ₹113.49 (+3.17% vs entry), clears ₹112.00 stop"},
+    {symbol:"HAVELLS",company:"Havells India",basket:"Industrials",entry_px:1201.5,shares:594,ltp:1286.0,_chg:0.08,entry_date:"2026-07-23",trail_stop:1270.95,exit_pending:false,note:"held — 4-Aug open ₹1,286.00 (+7.03% vs entry), clears ₹1,270.95 stop"},
+    {symbol:"HEROMOTOCO",company:"Hero MotoCorp",basket:"Auto",entry_px:5108.0,shares:140,ltp:5460.0,_chg:0.0,entry_date:"2026-07-28",trail_stop:5403.3,exit_pending:false,note:"held — 4-Aug open ₹5,460.00 (+6.89% vs entry), clears ₹5,403.30 stop"},
+    {symbol:"ASHOKLEY",company:"Ashok Leyland",basket:"Auto",entry_px:169.28,shares:4298,ltp:175.0,_chg:0.26,entry_date:"2026-08-03",trail_stop:172.48,exit_pending:false,is_new:true,note:"held — 4-Aug open ₹175.00 (+3.38% vs entry), clears ₹172.48 stop"},
+    {symbol:"APLAPOLLO",company:"APL Apollo Tubes",basket:"Metals",entry_px:1956.9,shares:367,ltp:1956.9,_chg:0.0,entry_date:"2026-08-04",trail_stop:1934.71,exit_pending:false,is_new:true,note:"✅ NEW — golden cross EOD 3-Aug, executed 4-Aug open ₹1,956.90 (signal ₹1,941.50, +0.79% slippage) · Metals breadth 90% · stop ₹1,934.71"}
   ],
-  pending_buys:[
-    {symbol:"APLAPOLLO",company:"APL Apollo Tubes",basket:"Metals",signal_px:1941.5,shares:367,trail_stop:1919.31,ma12:1843.87,ma60:1831.92,breadth_pct:90.0,note:"golden cross EOD 3-Aug (MA12 1843.87 > MA60 1831.92), Metals breadth 90% · queued for 4-Aug open · stop ₹1,919.31"}
-  ]
+  pending_buys:[]
 };;
 const TRADE_LOG=[
+  {date:"2026-08-04",symbol:"APLAPOLLO",type:"BUY",basket:"Metals",px:1956.9,shares:367,amount:718182,status:"OPEN",note:"Auto-executed at 4-Aug open ₹1,956.90 · golden cross EOD 3-Aug, Metals breadth 90% · signal ₹1,941.50 (+0.79% slippage) · stop ₹1,934.71"},
   {date:"2026-08-03",symbol:"ASHOKLEY",type:"BUY",basket:"Auto",px:169.28,shares:4298,amount:727565,status:"OPEN",note:"Auto-executed at 3-Aug open ₹169.28 · golden cross EOD 31-Jul, Auto breadth 90% · signal ₹166.18 (+1.87% slippage) · stop ₹167.32"},
   {date:"2026-08-03",symbol:"TCS",type:"SELL",basket:"IT",px:2383.90,shares:311,amount:741393,status:"CLOSED",pnl_pct:2.533,note:"Auto-executed at 3-Aug open ₹2,383.90 | stop_breach — EOD 31-Jul ₹2,365.60 < ratcheted σ=0.5 stop ₹2,413.48; exit fill +2.53% vs entry ₹2,325 (+₹18.3K)."},
   {date:"2026-08-03",symbol:"UBL",type:"SELL",basket:"Consumer",px:1437.00,shares:511,amount:734307,status:"CLOSED",pnl_pct:1.340,note:"Auto-executed at 3-Aug open ₹1,437.00 | stop_breach — EOD 31-Jul ₹1,418.80 < ratcheted σ=0.5 stop ₹1,423.49; exit fill +1.34% vs entry ₹1,418 (+₹9.7K)."},
@@ -118,7 +118,7 @@ function renderPublic(){
     <div class="card"><div class="lbl">Cash</div><div class="val g">${inr(cash)}</div><div class="sub">${(cash/PORTFOLIO.capital*100).toFixed(1)}% idle</div></div>
     <div class="card"><div class="lbl">Open P&amp;L</div><div class="val ${tpnl>=0?'g':'r'}">${tpnl>=0?'+':''}${inr(tpnl)}</div><div class="sub">${tpnl>=0?'+':''}${n(tpct)}%</div></div>
     <div class="card"><div class="lbl">Booked P&amp;L</div><div class="val ${tb>=0?'g':'r'}">${tb>=0?'+':''}${inr(tb)}</div><div class="sub">${ct.length} closed trades</div></div>
-    <div class="card"><div class="lbl">Positions</div><div class="val">6<span style="font-size:11px;color:#aaa">/14</span></div><div class="sub" style="color:#16a34a">6 held · all above stop</div></div>
+    <div class="card"><div class="lbl">Positions</div><div class="val">7<span style="font-size:11px;color:#aaa">/14</span></div><div class="sub" style="color:#16a34a">7 held · filled at open</div></div>
   </div>`;
   const trows=rows.map(r=>{const chg=r._chg??null;
     const ls=chg!=null?`<b>${n(r.cp)}</b> <span style="font-size:10px;color:${chg>=0?'#16a34a':'#dc2626'}">${chg>=0?'+':''}${chg.toFixed(2)}%</span>`:`<b>${n(r.cp)}</b>`;
@@ -148,9 +148,9 @@ function renderPublic(){
       <td class="num">${ep}</td><td class="num">${xp}</td><td class="num">${a.trades.map(t=>t.shares.toLocaleString('en-IN')).join(' + ')}</td>
       <td class="num">${inr(Math.round(a.totalCost))}</td><td class="num ${pc}">${pi>=0?'+':''}${inr(pi)}</td><td class="num ${pc}">${pct>=0?'+':''}${n(pct)}%</td></tr>`;}).join('');
   return`${liveBar}${cards}
-  <div class="chart-row chart-2" style="padding-top:0"><div class="chart-box"><h4>Allocation (6 positions)</h4><canvas id="c-alloc" style="max-height:180px"></canvas></div><div class="chart-box"><h4>P&amp;L % per position</h4><canvas id="c-pos-pnl" style="max-height:180px"></canvas></div></div>
+  <div class="chart-row chart-2" style="padding-top:0"><div class="chart-box"><h4>Allocation (7 positions)</h4><canvas id="c-alloc" style="max-height:180px"></canvas></div><div class="chart-box"><h4>P&amp;L % per position</h4><canvas id="c-pos-pnl" style="max-height:180px"></canvas></div></div>
   <div class="pnl-table"><div style="font-size:13px;font-weight:700;color:#374151;padding:0 2px 8px;border-bottom:2px solid #e5e7eb">Open Positions</div>
-  <div class="pnl-tbl-wrap"><table><thead><tr><th>Symbol</th><th>Company</th><th>Basket</th><th class="num">Entry</th><th class="num">Entry Px</th><th class="num">Shares</th><th class="num">Amount</th><th class="num">%Port</th><th class="num">EOD Close</th><th class="num">Trail Stop</th><th class="num">Cur Val</th><th class="num">P&amp;L ₹</th><th class="num">P&amp;L%</th><th>Status</th></tr></thead><tbody>${trows}</tbody>${tfoot}</table></div></div>
+  <div class="pnl-tbl-wrap"><table><thead><tr><th>Symbol</th><th>Company</th><th>Basket</th><th class="num">Entry</th><th class="num">Entry Px</th><th class="num">Shares</th><th class="num">Amount</th><th class="num">%Port</th><th class="num">Open Mark</th><th class="num">Trail Stop</th><th class="num">Cur Val</th><th class="num">P&amp;L ₹</th><th class="num">P&amp;L%</th><th>Status</th></tr></thead><tbody>${trows}</tbody>${tfoot}</table></div></div>
   ${pendRows?`<div class="pnl-table" style="margin-top:16px"><div style="font-size:13px;font-weight:700;color:#374151;padding:0 2px 8px;border-bottom:2px solid #e5e7eb">Queued Buys — pending execution at next open</div>
   <div class="pnl-tbl-wrap"><table><thead><tr><th>Symbol</th><th>Company</th><th>Basket</th><th class="num">Signal Px</th><th class="num">Shares</th><th class="num">Notional</th><th class="num">Stop</th><th>Status</th></tr></thead><tbody>${pendRows}</tbody></table></div></div>`:''}
   <div class="pnl-table" style="margin-top:16px"><div style="display:flex;align-items:baseline;gap:14px;padding:0 2px 8px;border-bottom:2px solid #e5e7eb"><span style="font-size:13px;font-weight:700;color:#374151">Booked P&amp;L</span><span style="font-size:12px;color:${tb>=0?'#16a34a':'#dc2626'};font-weight:700">${tb>=0?'+':''}${inr(tb)}</span><span style="font-size:11px;color:#94a3b8">${bW}W/${bL}L</span></div>
