@@ -143,7 +143,7 @@ function renderPublic(){
     <td class="num ${tpnl>=0?'g':'r'}">${tpnl>=0?'+':''}${inr(tpnl)}</td><td class="num ${tpct>=0?'g':'r'}">${tpct>=0?'+':''}${n(tpct)}%</td><td></td></tr></tfoot>`;
   const pendRows=PORTFOLIO.pending_buys.map(b=>`<tr style="background:#fffbeb"><td class="sym">${b.symbol}</td><td class="co">${b.company}</td><td>${pill(b.basket)}</td><td class="num">${n(b.signal_px)}</td><td class="num">${b.shares.toLocaleString('en-IN')}</td><td class="num">${inr(b.signal_px*b.shares)}</td><td class="num" style="color:#555;font-size:10px"><b>${n(b.trail_stop)}</b></td><td><span class="buy-tag">📋 EXEC AT OPEN</span></td></tr>`).join('');
   const aggMap={};
-  for(const t of ct){const cost=t.amount/(1+t.pnl_pct/100);const pi=Math.round(cost*t.pnl_pct/100);if(!aggMap[t.symbol])aggMap[t.symbol]={symbol:t.symbol,basket:t.basket,trades:[],totalCost:0,totalPi:0};aggMap[t.symbol].trades.push({...t,_cost:cost,_pi:pi});aggMap[t.symbol].totalCost+=cost;aggMap[t.symbol].totalPi+=pi;}
+  for(const t of ct){const cost=t.amount/(1+t.pnl_pct/100);const pi=Math.round(cost*t.pnl_pct/100);const key=t.symbol+'|'+t.date;if(!aggMap[key])aggMap[key]={symbol:t.symbol,basket:t.basket,trades:[],totalCost:0,totalPi:0};aggMap[key].trades.push({...t,_cost:cost,_pi:pi});aggMap[key].totalCost+=cost;aggMap[key].totalPi+=pi;}
   let bW=0,bL=0;
   const brows=Object.values(aggMap).map(a=>{const pi=a.totalPi;const pct=pi/a.totalCost*100;if(pi>=0)bW++;else bL++;const pc=pi>=0?'g':'r';
     const sells=a.trades.filter(t=>t.type==='SELL');const buysInCt=a.trades.filter(t=>t.type==='BUY');
