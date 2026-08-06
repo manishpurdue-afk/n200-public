@@ -19,28 +19,27 @@
 <script>
 const PORTFOLIO={
   capital:10000000,
-  _refreshedAt:"EOD 05-Aug-2026 · 174 stocks scanned on NSE bhavcopy. 2 stop breaches flagged for 6-Aug open: HCLTECH EOD ₹1,350.00 < stop ₹1,360.35 (still +12.03% vs entry) and DEEPAKNTR EOD ₹1,736.70 < stop ₹1,819.02 (-5.87% vs entry ₹1,845.00, the day-after fade on its +7.4% slippage entry). 2 new golden crosses queued: BALKRISIND (Auto, gap +14.6%) and JSWSTEEL (Metals, gap +5.0%). Open P&L +₹284.4K. Index 103.64 (-0.33 vs 5-Aug open 103.97, -0.03 vs 4-Aug EOD 103.67). Booked +₹79.9K (22 closed). 7 held · 2 pending exits · 🟠 Caution, VIX 12.06",
+  _refreshedAt:"OPEN 06-Aug-2026 · 4 orders executed at NSE open. Exited HCLTECH @ ₹1,349.90 (+12.03% vs entry ₹1,205, +₹85.9K) and DEEPAKNTR @ ₹1,737.00 (-5.85% vs entry ₹1,845, -₹44.8K) on stop breach. Filled 2 golden crosses: BALKRISIND @ ₹2,488.00 (Auto, -0.54% slippage vs ₹2,501.60 signal) and JSWSTEEL @ ₹1,330.00 (Metals, 0.00% slippage). Open P&L +₹236.6K. Index 103.58 (-0.06 vs 5-Aug EOD 103.64). Booked +₹121.0K (24 closed). 7 held · 7 slots free · 🟠 Caution, VIX 12.06",
   regime_at_entry:"Bear",
   positions:[
 
-    {symbol:"TECHM",company:"Tech Mahindra",basket:"IT",entry_px:1509.0,shares:457,ltp:1650.0,_chg:0.09,entry_date:"2026-07-14",trail_stop:1645.27,exit_pending:false,note:"held — 5-Aug EOD ₹1,650.00 (+9.34% vs entry), just clears ₹1,645.27 stop"},
-    {symbol:"HCLTECH",company:"HCL Technologies",basket:"IT",entry_px:1205.0,shares:593,ltp:1350.0,_chg:-1.45,entry_date:"2026-07-20",trail_stop:1360.35,exit_pending:true,note:"⚠️ EXIT — 5-Aug EOD ₹1,350.00 < stop ₹1,360.35, breach → exit at 6-Aug open (still +12.03% vs entry)"},
-    {symbol:"PNB",company:"Punjab National Bank",basket:"Finance",entry_px:110.0,shares:6493,ltp:113.55,_chg:-0.39,entry_date:"2026-07-23",trail_stop:113.01,exit_pending:false,note:"held — 5-Aug EOD ₹113.55 (+3.23% vs entry), stop ₹113.01"},
-    {symbol:"HAVELLS",company:"Havells India",basket:"Industrials",entry_px:1201.5,shares:594,ltp:1290.0,_chg:-0.39,entry_date:"2026-07-23",trail_stop:1280.92,exit_pending:false,note:"held — 5-Aug EOD ₹1,290.00 (+7.37% vs entry), stop ₹1,280.92"},
-    {symbol:"HEROMOTOCO",company:"Hero MotoCorp",basket:"Auto",entry_px:5108.0,shares:140,ltp:5690.0,_chg:2.56,entry_date:"2026-07-28",trail_stop:5626.38,exit_pending:false,note:"held — 5-Aug EOD ₹5,690.00 (+11.39% vs entry), stop ratcheted ₹5,626.38"},
-    {symbol:"JUBLFOOD",company:"Jubilant FoodWorks",basket:"Retail",entry_px:470.8,shares:1536,ltp:485.0,_chg:4.3,entry_date:"2026-08-05",trail_stop:478.81,exit_pending:false,is_new:true,note:"NEW — filled 5-Aug open ₹470.80 · EOD ₹485.00 (+3.02% vs entry), stop ratcheted ₹478.81"},
-    {symbol:"DEEPAKNTR",company:"Deepak Nitrite",basket:"Chemicals",entry_px:1845.0,shares:415,ltp:1736.7,_chg:1.11,entry_date:"2026-08-05",trail_stop:1819.02,exit_pending:true,is_new:true,note:"⚠️ EXIT — NEW filled 5-Aug open ₹1,845.00, EOD ₹1,736.70 < stop ₹1,819.02, breach → exit at 6-Aug open (-5.87% vs entry)"}
+    {symbol:"TECHM",company:"Tech Mahindra",basket:"IT",entry_px:1509.0,shares:457,ltp:1655.0,_chg:0.3,entry_date:"2026-07-14",trail_stop:1645.27,exit_pending:false,note:"held — 6-Aug open ₹1,655.00 (+9.67% vs entry), clears ₹1,645.27 stop"},
+    {symbol:"PNB",company:"Punjab National Bank",basket:"Finance",entry_px:110.0,shares:6493,ltp:113.55,_chg:0.0,entry_date:"2026-07-23",trail_stop:113.01,exit_pending:false,note:"held — 6-Aug open ₹113.55 (+3.23% vs entry), stop ₹113.01"},
+    {symbol:"HAVELLS",company:"Havells India",basket:"Industrials",entry_px:1201.5,shares:594,ltp:1290.0,_chg:0.0,entry_date:"2026-07-23",trail_stop:1280.92,exit_pending:false,note:"held — 6-Aug open ₹1,290.00 (+7.37% vs entry), stop ₹1,280.92"},
+    {symbol:"HEROMOTOCO",company:"Hero MotoCorp",basket:"Auto",entry_px:5108.0,shares:140,ltp:5680.0,_chg:-0.18,entry_date:"2026-07-28",trail_stop:5626.38,exit_pending:false,note:"held — 6-Aug open ₹5,680.00 (+11.20% vs entry), stop ₹5,626.38"},
+    {symbol:"JUBLFOOD",company:"Jubilant FoodWorks",basket:"Retail",entry_px:470.8,shares:1536,ltp:480.0,_chg:-1.03,entry_date:"2026-08-05",trail_stop:478.81,exit_pending:false,note:"held — 6-Aug open ₹480.00 (+1.96% vs entry), stop ₹478.81"},
+    {symbol:"BALKRISIND",company:"BALKRISIND",basket:"Auto",entry_px:2488.0,shares:286,ltp:2488.0,_chg:0.0,entry_date:"2026-08-06",trail_stop:2443.7,exit_pending:false,is_new:true,note:"NEW — filled 6-Aug open ₹2,488.00 · golden cross EOD 5-Aug, Auto breadth 92% · signal ₹2,501.60 (-0.54% slippage) · stop ₹2,443.70"},
+    {symbol:"JSWSTEEL",company:"JSWSTEEL",basket:"Metals",entry_px:1330.0,shares:537,ltp:1330.0,_chg:0.0,entry_date:"2026-08-06",trail_stop:1316.83,exit_pending:false,is_new:true,note:"NEW — filled 6-Aug open ₹1,330.00 · golden cross EOD 5-Aug, Metals breadth 100% · signal ₹1,330.00 (0.00% slippage) · stop ₹1,316.83"}
   ],
-  pending_buys:[
-    {symbol:"BALKRISIND",company:"Balkrishna Inds",basket:"Auto",signal_px:2501.6,shares:286,trail_stop:2455.14,note:"golden cross EOD 5-Aug, Auto breadth 92% · gap +14.6% · exec at 6-Aug open"},
-    {symbol:"JSWSTEEL",company:"JSW Steel",basket:"Metals",signal_px:1330.0,shares:537,trail_stop:1316.5,note:"golden cross EOD 5-Aug, Metals breadth 100% · gap +5.0% · exec at 6-Aug open"}
-  ]
+  pending_buys:[]
 };;
 const TRADE_LOG=[
-  {date:"2026-08-05",symbol:"HCLTECH",type:"SELL",basket:"IT",px:0,shares:593,amount:0,status:"PENDING",note:"Stop breach — EOD 5-Aug ₹1,350.00 < stop ₹1,360.35; will execute at 6-Aug open (still +12% vs entry ₹1,205)"},
-  {date:"2026-08-05",symbol:"DEEPAKNTR",type:"SELL",basket:"Chemicals",px:0,shares:415,amount:0,status:"PENDING",note:"Stop breach — EOD 5-Aug ₹1,736.70 < stop ₹1,819.02; will execute at 6-Aug open (-5.87% vs entry ₹1,845)"},
+  {date:"2026-08-06",symbol:"BALKRISIND",type:"BUY",basket:"Auto",px:2488.00,shares:286,amount:711568,status:"OPEN",note:"Auto-executed at 6-Aug open ₹2,488.00 · golden cross EOD 5-Aug, Auto breadth 92% · signal ₹2,501.60 (-0.54% slippage) · stop ₹2,443.70"},
+  {date:"2026-08-06",symbol:"JSWSTEEL",type:"BUY",basket:"Metals",px:1330.00,shares:537,amount:714210,status:"OPEN",note:"Auto-executed at 6-Aug open ₹1,330.00 · golden cross EOD 5-Aug, Metals breadth 100% · signal ₹1,330.00 (0.00% slippage) · stop ₹1,316.83"},
+  {date:"2026-08-06",symbol:"HCLTECH",type:"SELL",basket:"IT",px:1349.90,shares:593,amount:800491,status:"CLOSED",pnl_pct:12.025,note:"Auto-executed at 6-Aug open ₹1,349.90 | stop_breach — EOD 5-Aug ₹1,350.00 < stop ₹1,360.35; exit fill +12.03% vs entry ₹1,205 (+₹85.9K)."},
+  {date:"2026-08-06",symbol:"DEEPAKNTR",type:"SELL",basket:"Chemicals",px:1737.00,shares:415,amount:720855,status:"CLOSED",pnl_pct:-5.854,note:"Auto-executed at 6-Aug open ₹1,737.00 | stop_breach — EOD 5-Aug ₹1,736.70 < stop ₹1,819.02; exit fill -5.85% vs entry ₹1,845 (-₹44.8K)."},
   {date:"2026-08-05",symbol:"JUBLFOOD",type:"BUY",basket:"Retail",px:470.80,shares:1536,amount:723149,status:"OPEN",note:"Auto-executed at 5-Aug open ₹470.80 · golden cross EOD 4-Aug, Retail breadth 83% · signal ₹465.00 (+1.25% slippage) · stop ₹465.12"},
-  {date:"2026-08-05",symbol:"DEEPAKNTR",type:"BUY",basket:"Chemicals",px:1845.00,shares:415,amount:765675,status:"OPEN",note:"Auto-executed at 5-Aug open ₹1,845.00 · golden cross EOD 4-Aug, Chemicals breadth 56% · signal ₹1,717.70 (+7.41% slippage) · stop ₹1,819.02"},
+  {date:"2026-08-05",symbol:"DEEPAKNTR",type:"BUY",basket:"Chemicals",px:1845.00,shares:415,amount:765675,status:"CLOSED",note:"Auto-executed at 5-Aug open ₹1,845.00 · golden cross EOD 4-Aug · stop ₹1,819.02 breached EOD 5-Aug → exited 6-Aug open ₹1,737.00 (-5.85%). Two-day round trip."},
   {date:"2026-08-05",symbol:"ASHOKLEY",type:"SELL",basket:"Auto",px:174.00,shares:4298,amount:747852,status:"CLOSED",pnl_pct:2.788,note:"Auto-executed at 5-Aug open ₹174.00 | stop_breach — EOD 4-Aug ₹172.08 < stop ₹172.48; exit fill +2.79% vs entry ₹169.28 (+₹20.3K)."},
   {date:"2026-08-05",symbol:"APLAPOLLO",type:"SELL",basket:"Metals",px:1945.00,shares:367,amount:713815,status:"CLOSED",pnl_pct:-0.608,note:"Auto-executed at 5-Aug open ₹1,945.00 | stop_breach — EOD 4-Aug ₹1,920.00 < stop ₹1,934.15; exit fill -0.61% vs entry ₹1,956.90 (-₹4.4K)."},
   {date:"2026-08-04",symbol:"APLAPOLLO",type:"BUY",basket:"Metals",px:1956.90,shares:367,amount:718182,status:"CLOSED",note:"Auto-executed at 4-Aug open ₹1,956.90 · golden cross EOD 3-Aug, Metals breadth 90% · signal ₹1,941.50 (+0.79% slippage) · stop ₹1,934.15 · breached EOD 4-Aug → exited 5-Aug open ₹1,945.00 (-0.61%)"},
@@ -130,7 +129,7 @@ function renderPublic(){
     <div class="card"><div class="lbl">Cash</div><div class="val g">${inr(cash)}</div><div class="sub">${(cash/PORTFOLIO.capital*100).toFixed(1)}% idle</div></div>
     <div class="card"><div class="lbl">Open P&amp;L</div><div class="val ${tpnl>=0?'g':'r'}">${tpnl>=0?'+':''}${inr(tpnl)}</div><div class="sub">${tpnl>=0?'+':''}${n(tpct)}%</div></div>
     <div class="card"><div class="lbl">Booked P&amp;L</div><div class="val ${tb>=0?'g':'r'}">${tb>=0?'+':''}${inr(tb)}</div><div class="sub">${ct.length} closed trades</div></div>
-    <div class="card"><div class="lbl">Positions</div><div class="val">7<span style="font-size:11px;color:#aaa">/14</span></div><div class="sub" style="color:#dc2626">2 pending exits</div></div>
+    <div class="card"><div class="lbl">Positions</div><div class="val">7<span style="font-size:11px;color:#aaa">/14</span></div><div class="sub" style="color:#16a34a">7 slots free</div></div>
   </div>`;
   const trows=rows.map(r=>{const chg=r._chg??null;
     const ls=chg!=null?`<b>${n(r.cp)}</b> <span style="font-size:10px;color:${chg>=0?'#16a34a':'#dc2626'}">${chg>=0?'+':''}${chg.toFixed(2)}%</span>`:`<b>${n(r.cp)}</b>`;
@@ -161,7 +160,7 @@ function renderPublic(){
       <td class="num">${inr(Math.round(a.totalCost))}</td><td class="num ${pc}">${pi>=0?'+':''}${inr(pi)}</td><td class="num ${pc}">${pct>=0?'+':''}${n(pct)}%</td></tr>`;}).join('');
   return`${liveBar}${cards}
   <div class="chart-row chart-2" style="padding-top:0"><div class="chart-box"><h4>Allocation (7 positions)</h4><canvas id="c-alloc" style="max-height:180px"></canvas></div><div class="chart-box"><h4>P&amp;L % per position</h4><canvas id="c-pos-pnl" style="max-height:180px"></canvas></div></div>
-  <div class="pnl-table"><div style="font-size:13px;font-weight:700;color:#374151;padding:0 2px 8px;border-bottom:2px solid #e5e7eb">Open Positions — 7-name book marked to 5-Aug EOD · HCLTECH & DEEPAKNTR flagged to exit at 6-Aug open</div>
+  <div class="pnl-table"><div style="font-size:13px;font-weight:700;color:#374151;padding:0 2px 8px;border-bottom:2px solid #e5e7eb">Open Positions — 7-name book marked to 6-Aug open · HCLTECH & DEEPAKNTR exited, BALKRISIND & JSWSTEEL filled</div>
   <div class="pnl-tbl-wrap"><table><thead><tr><th>Symbol</th><th>Company</th><th>Basket</th><th class="num">Entry</th><th class="num">Entry Px</th><th class="num">Shares</th><th class="num">Amount</th><th class="num">%Port</th><th class="num">Mark</th><th class="num">Trail Stop</th><th class="num">Cur Val</th><th class="num">P&amp;L ₹</th><th class="num">P&amp;L%</th><th>Status</th></tr></thead><tbody>${trows}</tbody>${tfoot}</table></div></div>
   ${pendRows?`<div class="pnl-table" style="margin-top:16px"><div style="font-size:13px;font-weight:700;color:#374151;padding:0 2px 8px;border-bottom:2px solid #e5e7eb">Queued Buys — pending execution at next open</div>
   <div class="pnl-tbl-wrap"><table><thead><tr><th>Symbol</th><th>Company</th><th>Basket</th><th class="num">Signal Px</th><th class="num">Shares</th><th class="num">Notional</th><th class="num">Stop</th><th>Status</th></tr></thead><tbody>${pendRows}</tbody></table></div></div>`:''}
