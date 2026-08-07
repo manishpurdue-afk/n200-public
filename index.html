@@ -106,6 +106,10 @@ const inr=(v)=>v==null?'--':'₹'+Math.abs(v).toLocaleString('en-IN',{maximumFra
 function getLTP(p){return p.ltp;}
 let charts={};
 function destroyChart(id){if(charts[id]){charts[id].destroy();delete charts[id];}}
+function buildBookedTable(rows){if(!rows.length)return'<div class="empty">No booked trades match.</div>';
+  const body=rows.map(r=>{const pc=r.pnl_amt>=0?'g':'r';return`<tr><td class="sym">${r.symbol}</td><td class="num">${r.shares.toLocaleString('en-IN')}</td><td class="num" style="font-size:10px;white-space:nowrap">${r.entry_date}</td><td class="num">${n(r.entry_px)}</td><td class="num">${inr(r.cost)}</td><td class="num" style="font-size:10px;white-space:nowrap">${r.exit_date}</td><td class="num">${n(r.exit_px)}</td><td class="num ${pc}">${r.pnl_amt>=0?'+':''}${inr(r.pnl_amt)}</td><td class="num ${pc}">${r.pnl_pct>=0?'+':''}${n(r.pnl_pct)}%</td></tr>`;}).join('');
+  return`<table><thead><tr><th>Symbol</th><th class="num">Shares</th><th class="num">Entry Date</th><th class="num">Entry Px</th><th class="num">Cost</th><th class="num">Exit Date</th><th class="num">Exit Px</th><th class="num">P&amp;L ₹</th><th class="num">P&amp;L%</th></tr></thead><tbody>${body}</tbody></table>`;}
+function filterBooked(){const sym=(document.getElementById('booked-sym').value||'').toUpperCase();const rows=(window.__BOOKED||[]).filter(r=>!sym||r.symbol.toUpperCase().includes(sym));document.getElementById('booked-tbl-wrap').innerHTML=buildBookedTable(rows);}
 function renderPublic(){
   const pos=PORTFOLIO.positions;let ti=0,tv=0;
   const rows=pos.map(p=>{const cp=getLTP(p);const cost=p.entry_px*p.shares;const cur=cp*p.shares;const pnl=cur-cost;const pp=(pnl/cost*100);const prt=(cost/PORTFOLIO.capital*100);ti+=cost;tv+=cur;
@@ -152,18 +156,13 @@ function renderPublic(){
   const tfoot=`<tfoot><tr><td colspan="6" style="font-weight:700">TOTAL (${pos.length} positions)</td><td class="num">${inr(ti)}</td><td></td><td colspan="2"></td><td class="num">${inr(tv)}</td>
     <td class="num ${tpnl>=0?'g':'r'}">${tpnl>=0?'+':''}${inr(tpnl)}</td><td class="num ${tpct>=0?'g':'r'}">${tpct>=0?'+':''}${n(tpct)}%</td><td></td></tr></tfoot>`;
   const pendRows=PORTFOLIO.pending_buys.map(b=>`<tr style="background:#fffbeb"><td class="sym">${b.symbol}</td><td class="co">${b.company}</td><td>${pill(b.basket)}</td><td class="num">${n(b.signal_px)}</td><td class="num">${b.shares.toLocaleString('en-IN')}</td><td class="num">${inr(b.signal_px*b.shares)}</td><td class="num" style="color:#555;font-size:10px"><b>${n(b.trail_stop)}</b></td><td><span class="buy-tag">📋 EXEC AT OPEN</span></td></tr>`).join('');
-  const aggMap={};
-  for(const t of ct){const cost=t.amount/(1+t.pnl_pct/100);const pi=Math.round(cost*t.pnl_pct/100);const key=t.symbol+'|'+t.date;if(!aggMap[key])aggMap[key]={symbol:t.symbol,basket:t.basket,trades:[],totalCost:0,totalPi:0};aggMap[key].trades.push({...t,_cost:cost,_pi:pi});aggMap[key].totalCost+=cost;aggMap[key].totalPi+=pi;}
-  let bW=0,bL=0;
-  const brows=Object.values(aggMap).map(a=>{const pi=a.totalPi;const pct=pi/a.totalCost*100;if(pi>=0)bW++;else bL++;const pc=pi>=0?'g':'r';
-    const sells=a.trades.filter(t=>t.type==='SELL');const buysInCt=a.trades.filter(t=>t.type==='BUY');
-    const ep=buysInCt.length?n(buysInCt[buysInCt.length-1].px):'--';
-    const xp=sells.length?n(sells[0].px):'--';
-    const dates=a.trades.map(t=>t.date).sort();
-    const dateStr=dates.length>1?dates[0]+' – '+dates[dates.length-1]:dates[0];
-    return`<tr><td class="num" style="font-size:10px;white-space:nowrap">${dateStr}</td><td class="sym">${a.symbol}</td><td>${pill(a.basket)}</td>
-      <td class="num">${ep}</td><td class="num">${xp}</td><td class="num">${a.trades.map(t=>t.shares.toLocaleString('en-IN')).join(' + ')}</td>
-      <td class="num">${inr(Math.round(a.totalCost))}</td><td class="num ${pc}">${pi>=0?'+':''}${inr(pi)}</td><td class="num ${pc}">${pct>=0?'+':''}${n(pct)}%</td></tr>`;}).join('');
+  const bookedRows=ct.map(t=>{const cost=t.amount/(1+t.pnl_pct/100);const entry_px=t.px/(1+t.pnl_pct/100);const pnl_amt=Math.round(cost*t.pnl_pct/100);
+    const cand=TRADE_LOG.filter(x=>x.type==='BUY'&&x.symbol===t.symbol&&x.date<=t.date).sort((a,b)=>a.date<b.date?-1:1);
+    const entry_date=cand.length?cand[cand.length-1].date:'--';
+    return{symbol:t.symbol,basket:t.basket,entry_date,entry_px,cost,exit_date:t.date,exit_px:t.px,pnl_amt,pnl_pct:t.pnl_pct,shares:t.shares};
+  }).sort((a,b)=>a.exit_date<b.exit_date?1:(a.exit_date>b.exit_date?-1:0));
+  window.__BOOKED=bookedRows;
+  const bW=bookedRows.filter(r=>r.pnl_amt>=0).length,bL=bookedRows.length-bW;
   return`${liveBar}${cards}
   <div class="chart-row chart-2" style="padding-top:0"><div class="chart-box"><h4>Allocation (6 positions)</h4><canvas id="c-alloc" style="max-height:180px"></canvas></div><div class="chart-box"><h4>P&amp;L % per position</h4><canvas id="c-pos-pnl" style="max-height:180px"></canvas></div></div>
   <div class="pnl-table"><div style="font-size:13px;font-weight:700;color:#374151;padding:0 2px 8px;border-bottom:2px solid #e5e7eb">Open Positions</div>
@@ -171,7 +170,8 @@ function renderPublic(){
   ${pendRows?`<div class="pnl-table" style="margin-top:16px"><div style="font-size:13px;font-weight:700;color:#374151;padding:0 2px 8px;border-bottom:2px solid #e5e7eb">Queued Buys — pending execution at next open</div>
   <div class="pnl-tbl-wrap"><table><thead><tr><th>Symbol</th><th>Company</th><th>Basket</th><th class="num">Signal Px</th><th class="num">Shares</th><th class="num">Notional</th><th class="num">Stop</th><th>Status</th></tr></thead><tbody>${pendRows}</tbody></table></div></div>`:''}
   <div class="pnl-table" style="margin-top:16px"><div style="display:flex;align-items:baseline;gap:14px;padding:0 2px 8px;border-bottom:2px solid #e5e7eb"><span style="font-size:13px;font-weight:700;color:#374151">Booked P&amp;L</span><span style="font-size:12px;color:${tb>=0?'#16a34a':'#dc2626'};font-weight:700">${tb>=0?'+':''}${inr(tb)}</span><span style="font-size:11px;color:#94a3b8">${bW}W/${bL}L</span></div>
-  <div class="pnl-tbl-wrap"><table><thead><tr><th>Exit Date</th><th>Symbol</th><th>Basket</th><th class="num">Entry</th><th class="num">Exit</th><th class="num">Shares</th><th class="num">Cost</th><th class="num">P&amp;L ₹</th><th class="num">P&amp;L%</th></tr></thead><tbody>${brows}</tbody></table></div></div><div style="padding:12px 16px;margin-top:4px;font-size:10.5px;color:#94a3b8;line-height:1.5;border-top:1px solid #eef2f6">Disclaimer: For information only — not investment advice, an offer, or a solicitation. Simulated / paper portfolio: no client capital is managed and no live trades have been executed. Returns are hypothetical and gross of fees, taxes and transaction costs. Simulated and past performance is not indicative of future results; equity investments carry risk of loss.</div>`;}
+  <div style="padding:8px 2px"><input id="booked-sym" placeholder="Filter symbol…" onkeyup="filterBooked()" style="padding:4px 8px;border:1px solid #dde1e7;border-radius:5px;font-size:11.5px;width:150px"></div>
+  <div class="pnl-tbl-wrap" id="booked-tbl-wrap">${buildBookedTable(bookedRows)}</div><div style="padding:12px 16px;margin-top:4px;font-size:10.5px;color:#94a3b8;line-height:1.5;border-top:1px solid #eef2f6">Disclaimer: For information only — not investment advice, an offer, or a solicitation. Simulated / paper portfolio: no client capital is managed and no live trades have been executed. Returns are hypothetical and gross of fees, taxes and transaction costs. Simulated and past performance is not indicative of future results; equity investments carry risk of loss.</div></div>`;}
 function initPnLCharts(){const pos=PORTFOLIO.positions;
   const colors=['#3b82f6','#10b981','#8b5cf6','#f59e0b','#ec4899','#06b6d4','#84cc16','#f43f5e'];
   destroyChart('alloc');charts['alloc']=new Chart(document.getElementById('c-alloc'),{type:'doughnut',data:{labels:pos.map(p=>p.symbol),datasets:[{data:pos.map(p=>+(p.entry_px*p.shares).toFixed(0)),backgroundColor:colors,borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{font:{size:10}}}}}});
