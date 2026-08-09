@@ -127,11 +127,19 @@ function renderPublic(){
   const pv=PORTFOLIO.capital+tb+tpnl;
   const cash=pv-tv;
   const pv_idx=(pv/PORTFOLIO.capital*100).toFixed(2);
+  const MARK_DATE=new Date('2026-08-07');
+  function xirrCalc(flows){if(flows.length<2)return null;const t0=flows[0].date;const yrs=flows.map(f=>(f.date-t0)/(365*24*3600*1000));const npv=r=>flows.reduce((s,f,i)=>s+f.amount/Math.pow(1+r,yrs[i]),0);let lo=-0.9999,hi=1000,flo=npv(lo),fhi=npv(hi);if(flo*fhi>0)return null;for(let k=0;k<300;k++){const mid=(lo+hi)/2,fm=npv(mid);if(Math.abs(fm)<1e-4)return mid;if(flo*fm<0){hi=mid;}else{lo=mid;flo=fm;}}return (lo+hi)/2;}
+  const _cf=[];
+  ct.forEach(t=>{const cst=t.amount/(1+t.pnl_pct/100);const cand=TRADE_LOG.filter(x=>x.type==='BUY'&&x.symbol===t.symbol&&x.date<=t.date).sort((a,b)=>a.date<b.date?-1:1);const ed=cand.length?cand[cand.length-1].date:t.date;_cf.push({amount:-cst,date:new Date(ed)});_cf.push({amount:t.amount,date:new Date(t.date)});});
+  pos.forEach(p=>{_cf.push({amount:-(p.entry_px*p.shares),date:new Date(p.entry_date)});_cf.push({amount:getLTP(p)*p.shares,date:MARK_DATE});});
+  _cf.sort((a,b)=>a.date-b.date);
+  const _xr=xirrCalc(_cf);
   const liveBar='<div class="regime caution" style="border-radius:10px;margin-bottom:12px"><div class="r-label" style="font-size:17px">N200 Momentum Strategy</div><div class="r-sub" style="margin-left:auto;font-size:14px;font-weight:700;opacity:1">🟠 Caution Zone</div></div>';
-  const cards=`<div class="pnl-cards">
+  const cards=`<div class="pnl-cards" style="grid-template-columns:repeat(7,1fr)">
     <div class="card"><div class="lbl">Portfolio Value</div><div class="val ${pv>=PORTFOLIO.capital?'g':'r'}">${inr(pv)}</div><div class="sub ${pv>=PORTFOLIO.capital?'g':'r'}">${pv>=PORTFOLIO.capital?'+':''}${(+pv_idx-100).toFixed(2)}% vs ₹1Cr capital</div></div>
     <div class="card"><div class="lbl">Invested</div><div class="val b">${inr(ti)}</div><div class="sub">${(ti/PORTFOLIO.capital*100).toFixed(1)}% deployed</div></div>
     <div class="card"><div class="lbl">Cash</div><div class="val g">${inr(cash)}</div><div class="sub">${(cash/PORTFOLIO.capital*100).toFixed(1)}% idle</div></div>
+    <div class="card"><div class="lbl">XIRR (deployed)</div><div class="val ${_xr>=0?'g':'r'}">${_xr==null?'--':(_xr>=0?'+':'')+(_xr*100).toFixed(1)+'%'}</div><div class="sub">annualized · money-weighted</div></div>
     <div class="card"><div class="lbl">Open P&amp;L</div><div class="val ${tpnl>=0?'g':'r'}">${tpnl>=0?'+':''}${inr(tpnl)}</div><div class="sub">${tpnl>=0?'+':''}${n(tpct)}%</div></div>
     <div class="card"><div class="lbl">Booked P&amp;L</div><div class="val ${tb>=0?'g':'r'}">${tb>=0?'+':''}${inr(tb)}</div><div class="sub">${ct.length} closed trades</div></div>
     <div class="card"><div class="lbl">Positions</div><div class="val">6<span style="font-size:11px;color:#aaa">/14</span></div><div class="sub" style="color:#16a34a">6 held · none breached</div></div>
