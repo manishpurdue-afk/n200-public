@@ -134,12 +134,14 @@ function renderPublic(){
   pos.forEach(p=>{_cf.push({amount:-(p.entry_px*p.shares),date:new Date(p.entry_date)});_cf.push({amount:getLTP(p)*p.shares,date:MARK_DATE});});
   _cf.sort((a,b)=>a.date-b.date);
   const _xr=xirrCalc(_cf);
+  const _span=_cf.length>1?(_cf[_cf.length-1].date-_cf[0].date)/(365*24*3600*1000):0;
+  const _xrp=(_xr==null)?null:Math.pow(1+_xr,_span)-1;
   const liveBar='<div class="regime caution" style="border-radius:10px;margin-bottom:12px"><div class="r-label" style="font-size:17px">N200 Momentum Strategy</div><div class="r-sub" style="margin-left:auto;font-size:14px;font-weight:700;opacity:1">🟠 Caution Zone</div></div>';
   const cards=`<div class="pnl-cards" style="grid-template-columns:repeat(7,1fr)">
     <div class="card"><div class="lbl">Portfolio Value</div><div class="val ${pv>=PORTFOLIO.capital?'g':'r'}">${inr(pv)}</div><div class="sub ${pv>=PORTFOLIO.capital?'g':'r'}">${pv>=PORTFOLIO.capital?'+':''}${(+pv_idx-100).toFixed(2)}% vs ₹1Cr capital</div></div>
+    <div class="card"><div class="lbl">Return (deployed)</div><div class="val ${_xrp>=0?'g':'r'}">${_xrp==null?'--':(_xrp>=0?'+':'')+(_xrp*100).toFixed(2)+'%'}</div><div class="sub">money-weighted · since Jul 1</div></div>
     <div class="card"><div class="lbl">Invested</div><div class="val b">${inr(ti)}</div><div class="sub">${(ti/PORTFOLIO.capital*100).toFixed(1)}% deployed</div></div>
     <div class="card"><div class="lbl">Cash</div><div class="val g">${inr(cash)}</div><div class="sub">${(cash/PORTFOLIO.capital*100).toFixed(1)}% idle</div></div>
-    <div class="card"><div class="lbl">XIRR (deployed)</div><div class="val ${_xr>=0?'g':'r'}">${_xr==null?'--':(_xr>=0?'+':'')+(_xr*100).toFixed(1)+'%'}</div><div class="sub">annualized · money-weighted</div></div>
     <div class="card"><div class="lbl">Open P&amp;L</div><div class="val ${tpnl>=0?'g':'r'}">${tpnl>=0?'+':''}${inr(tpnl)}</div><div class="sub">${tpnl>=0?'+':''}${n(tpct)}%</div></div>
     <div class="card"><div class="lbl">Booked P&amp;L</div><div class="val ${tb>=0?'g':'r'}">${tb>=0?'+':''}${inr(tb)}</div><div class="sub">${ct.length} closed trades</div></div>
     <div class="card"><div class="lbl">Positions</div><div class="val">6<span style="font-size:11px;color:#aaa">/14</span></div><div class="sub" style="color:#16a34a">6 held · none breached</div></div>
