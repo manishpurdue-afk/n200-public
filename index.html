@@ -1,5 +1,5 @@
 <!DOCTYPE html><script type="application/json" id="cowork-artifact-meta">
-{ "name": "N200 Public", "schemaVersion": 1, "description": "N200 Momentum Strategy — public paper P&L view. 🟠 Caution. Simulated/paper portfolio; not investment advice." }
+{"name":"N200 Public","schemaVersion":1,"description":"N200 Momentum Strategy — paper portfolio P&L (public, sanitized). 🟠 Caution Zone. Simulated / hypothetical; not investment advice."}
 </script>
 <html lang="en"><head><meta charset="UTF-8"><title>N200 Public</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js" integrity="sha384-iU8HYtnGQ8Cy4zl7gbNMOhsDTTKX02BTXptVP/vqAWIaTfM7isw76iyZCsjL2eVi" crossorigin="anonymous"></script>
@@ -11,21 +11,21 @@
 <script>
 const PORTFOLIO={
   capital:10000000,
-  _refreshedAt:"EOD 11-Aug-2026 · Two stop-breaches at the close: HAVELLS (EOD ₹1,274.40 < stop ₹1,280.92, +6.07% vs entry) and PIIND (EOD ₹2,730.00 < stop ₹2,747.82, -1.74% vs entry) — both flagged for exit at the 12-Aug open. One new golden cross: GODFRYPHLP (Consumer breadth 60%) queued to buy at the 12-Aug open (~321 sh @ ₹2,224.90). 4 clean holds. Index 103.28 (-0.26 vs 11-Aug open 103.54). Booked +₹248.8K (29 closed). 🟠 Caution cap 14, VIX 11.85.",
+  _refreshedAt:"Open 12-Aug-2026 · Orders executed at the NSE open: SOLD HAVELLS ₹1,271.30 (+5.81% vs entry, stop breach) and PIIND ₹2,700.50 (-2.80%, stop breach); BOUGHT GODFRYPHLP 321 sh @ ₹2,223.50 (golden cross, stop ₹2,177.60). 5 positions held · 9 slots free. Index 103.14 (-0.14 vs 11-Aug EOD 103.28, -0.40 vs 11-Aug open 103.54). Booked +₹270.4K (31 closed, 16W/15L). 🟠 Caution cap 14, VIX 11.85.",
   regime_at_entry:"Caution",
   positions:[
-    {symbol:"HAVELLS",company:"Havells India",basket:"Industrials",entry_px:1201.5,shares:594,ltp:1274.4,_chg:-0.82,entry_date:"2026-07-23",trail_stop:1280.92,exit_pending:true,note:"⚠️ EXIT @ 12-Aug open — 11-Aug EOD ₹1,274.40 < stop ₹1,280.92 (+6.07% vs entry ₹1,201.50)"},
-    {symbol:"BALKRISIND",company:"Balkrishna Inds",basket:"Auto",entry_px:2488.0,shares:286,ltp:2498.9,_chg:-1.46,entry_date:"2026-08-06",trail_stop:2475.17,exit_pending:false,note:"held — 11-Aug EOD mark ₹2,498.90 (+0.44% vs entry ₹2,488.00), stop ₹2,475.17"},
-    {symbol:"INFY",company:"Infosys",basket:"IT",entry_px:1160.0,shares:613,ltp:1190.7,_chg:0.23,entry_date:"2026-08-07",trail_stop:1174.38,exit_pending:false,note:"held — 11-Aug EOD mark ₹1,190.70 (+2.65% vs entry ₹1,160.00), stop ₹1,174.38"},
-    {symbol:"PIIND",company:"PI Industries",basket:"Chemicals",entry_px:2778.4,shares:255,ltp:2730.0,_chg:-0.8,entry_date:"2026-08-07",trail_stop:2747.82,exit_pending:true,note:"⚠️ EXIT @ 12-Aug open — 11-Aug EOD ₹2,730.00 < stop ₹2,747.82 (-1.74% vs entry ₹2,778.40)"},
-    {symbol:"KOTAKBANK",company:"Kotak Mahindra Bank",basket:"Finance",entry_px:393.0,shares:1812,ltp:392.9,_chg:0.2,entry_date:"2026-08-07",trail_stop:390.22,exit_pending:false,note:"held — 11-Aug EOD mark ₹392.90 (-0.03% vs entry ₹393.00), stop ₹390.22"},
-    {symbol:"DELHIVERY",company:"Delhivery",basket:"Growth",entry_px:456.4,shares:1509,ltp:473.45,_chg:-0.97,entry_date:"2026-08-10",trail_stop:470.98,exit_pending:false,note:"held — 11-Aug EOD mark ₹473.45 (+3.74% vs entry ₹456.40), stop ₹470.98"}
+    {symbol:"BALKRISIND",company:"Balkrishna Inds",basket:"Auto",entry_px:2488.0,shares:286,ltp:2498.0,_chg:-0.04,entry_date:"2026-08-06",trail_stop:2475.17,exit_pending:false,note:"held — 12-Aug open mark ₹2,498.00 (+0.40% vs entry ₹2,488.00), stop ₹2,475.17"},
+    {symbol:"INFY",company:"Infosys",basket:"IT",entry_px:1160.0,shares:613,ltp:1185.6,_chg:-0.43,entry_date:"2026-08-07",trail_stop:1174.38,exit_pending:false,note:"held — 12-Aug open mark ₹1,185.60 (+2.21% vs entry ₹1,160.00), stop ₹1,174.38"},
+    {symbol:"KOTAKBANK",company:"Kotak Mahindra Bank",basket:"Finance",entry_px:393.0,shares:1812,ltp:391.0,_chg:-0.48,entry_date:"2026-08-07",trail_stop:390.22,exit_pending:false,note:"held — 12-Aug open mark ₹391.00 (-0.51% vs entry ₹393.00), stop ₹390.22"},
+    {symbol:"DELHIVERY",company:"Delhivery",basket:"Growth",entry_px:456.4,shares:1509,ltp:475.3,_chg:0.39,entry_date:"2026-08-10",trail_stop:470.98,exit_pending:false,note:"held — 12-Aug open mark ₹475.30 (+4.14% vs entry ₹456.40), stop ₹470.98"},
+    {symbol:"GODFRYPHLP",company:"Godfrey Phillips",basket:"Consumer",entry_px:2223.5,shares:321,ltp:2223.5,_chg:0.0,entry_date:"2026-08-12",trail_stop:2177.6,exit_pending:false,is_new:true,note:"✅ NEW — auto-executed at 12-Aug open ₹2,223.50 · golden cross EOD 11-Aug, Consumer breadth 60% · signal ₹2,224.90 (-0.06% slippage) · stop ₹2,177.60"}
   ],
-  pending_buys:[{symbol:"GODFRYPHLP",company:"Godfrey Phillips",basket:"Consumer",signal_px:2224.9,shares:321,trail_stop:2178.24}]
+  pending_buys:[]
 };
 const TRADE_LOG=[
-  {date:"2026-08-11",symbol:"HAVELLS",type:"SELL",basket:"Industrials",px:0,shares:594,amount:0,status:"PENDING",note:"Stop breach — EOD 11-Aug ₹1,274.40 < ratcheted stop ₹1,280.92; will execute at 12-Aug open (+6.07% vs entry ₹1,201.50)."},
-  {date:"2026-08-11",symbol:"PIIND",type:"SELL",basket:"Chemicals",px:0,shares:255,amount:0,status:"PENDING",note:"Stop breach — EOD 11-Aug ₹2,730.00 < ratcheted stop ₹2,747.82; will execute at 12-Aug open (-1.74% vs entry ₹2,778.40)."},
+  {date:"2026-08-12",symbol:"GODFRYPHLP",type:"BUY",basket:"Consumer",px:2223.50,shares:321,amount:713744,status:"OPEN",note:"Auto-executed at 12-Aug open ₹2,223.50 · golden cross EOD 11-Aug, Consumer breadth 60% · signal ₹2,224.90 (-0.06% slippage) · stop ₹2,177.60"},
+  {date:"2026-08-12",symbol:"HAVELLS",type:"SELL",basket:"Industrials",px:1271.30,shares:594,amount:755152,status:"CLOSED",pnl_pct:5.809,note:"Auto-executed at 12-Aug open ₹1,271.30 | stop_breach — EOD 11-Aug ₹1,274.40 < stop ₹1,280.92; exit fill +5.81% vs entry ₹1,201.50 (+₹41.5K)."},
+  {date:"2026-08-12",symbol:"PIIND",type:"SELL",basket:"Chemicals",px:2700.50,shares:255,amount:688628,status:"CLOSED",pnl_pct:-2.804,note:"Auto-executed at 12-Aug open ₹2,700.50 | stop_breach — EOD 11-Aug ₹2,730.00 < stop ₹2,747.82; exit fill -2.80% vs entry ₹2,778.40 (-₹19.9K)."},
   {date:"2026-08-11",symbol:"PNB",type:"SELL",basket:"Finance",px:113.50,shares:6493,amount:736956,status:"CLOSED",pnl_pct:3.182,note:"Auto-executed at 11-Aug open ₹113.50 | stop_breach — EOD 10-Aug ₹113.50 < ratcheted stop ₹113.96; exit fill +3.18% vs entry ₹110.00 (+₹22.7K)."},
   {date:"2026-08-10",symbol:"DELHIVERY",type:"BUY",basket:"Growth",px:456.40,shares:1509,amount:688708,status:"OPEN",note:"Auto-executed at 10-Aug open ₹456.40 · golden cross EOD 7-Aug, Growth breadth 63% · signal ₹473.30 (-3.57% slippage, gapped down) · stop ₹449.16 → ratcheted ₹470.98 at 10-Aug EOD · 11-Aug open ₹478.10 (+4.75%)"},
   {date:"2026-08-07",symbol:"INFY",type:"BUY",basket:"IT",px:1160.00,shares:613,amount:711080,status:"OPEN",note:"Auto-executed at 7-Aug open ₹1,160.00 · golden cross EOD 6-Aug, IT breadth 100% · signal ₹1,165.00 (-0.43% slippage) · stop ₹1,142.85"},
@@ -127,7 +127,7 @@ function renderPublic(){
   const pv=PORTFOLIO.capital+tb+tpnl;
   const cash=pv-tv;
   const pv_idx=(pv/PORTFOLIO.capital*100).toFixed(2);
-  const MARK_DATE=new Date('2026-08-11');
+  const MARK_DATE=new Date('2026-08-12');
   function xirrCalc(flows){if(flows.length<2)return null;const t0=flows[0].date;const yrs=flows.map(f=>(f.date-t0)/(365*24*3600*1000));const npv=r=>flows.reduce((s,f,i)=>s+f.amount/Math.pow(1+r,yrs[i]),0);let lo=-0.9999,hi=1000,flo=npv(lo),fhi=npv(hi);if(flo*fhi>0)return null;for(let k=0;k<300;k++){const mid=(lo+hi)/2,fm=npv(mid);if(Math.abs(fm)<1e-4)return mid;if(flo*fm<0){hi=mid;}else{lo=mid;flo=fm;}}return (lo+hi)/2;}
   const _cf=[];
   ct.forEach(t=>{const cst=t.amount/(1+t.pnl_pct/100);const cand=TRADE_LOG.filter(x=>x.type==='BUY'&&x.symbol===t.symbol&&x.date<=t.date).sort((a,b)=>a.date<b.date?-1:1);const ed=cand.length?cand[cand.length-1].date:t.date;_cf.push({amount:-cst,date:new Date(ed)});_cf.push({amount:t.amount,date:new Date(t.date)});});
@@ -144,7 +144,7 @@ function renderPublic(){
     <div class="card"><div class="lbl">Cash</div><div class="val g">${inr(cash)}</div><div class="sub">${(cash/PORTFOLIO.capital*100).toFixed(1)}% idle</div></div>
     <div class="card"><div class="lbl">Open P&amp;L</div><div class="val ${tpnl>=0?'g':'r'}">${tpnl>=0?'+':''}${inr(tpnl)}</div><div class="sub">${tpnl>=0?'+':''}${n(tpct)}%</div></div>
     <div class="card"><div class="lbl">Booked P&amp;L</div><div class="val ${tb>=0?'g':'r'}">${tb>=0?'+':''}${inr(tb)}</div><div class="sub">${ct.length} closed trades</div></div>
-    <div class="card"><div class="lbl">Positions</div><div class="val">6<span style="font-size:11px;color:#aaa">/14</span></div><div class="sub" style="color:#d97706">4 clean · 2 exit pending</div></div>
+    <div class="card"><div class="lbl">Positions</div><div class="val">5<span style="font-size:11px;color:#aaa">/14</span></div><div class="sub" style="color:#16a34a">5 held · 9 slots free</div></div>
   </div>`;
   const trows=rows.map(r=>{const chg=r._chg??null;
     const ls=chg!=null?`<b>${n(r.cp)}</b> <span style="font-size:10px;color:${chg>=0?'#16a34a':'#dc2626'}">${chg>=0?'+':''}${chg.toFixed(2)}%</span>`:`<b>${n(r.cp)}</b>`;
@@ -169,7 +169,7 @@ function renderPublic(){
   window.__BOOKED=bookedRows;
   const bW=bookedRows.filter(r=>r.pnl_amt>=0).length,bL=bookedRows.length-bW;
   return`${liveBar}${cards}
-  <div class="chart-row chart-2" style="padding-top:0"><div class="chart-box"><h4>Allocation (6 positions)</h4><canvas id="c-alloc" style="max-height:180px"></canvas></div><div class="chart-box"><h4>P&amp;L % per position</h4><canvas id="c-pos-pnl" style="max-height:180px"></canvas></div></div>
+  <div class="chart-row chart-2" style="padding-top:0"><div class="chart-box"><h4>Allocation (5 positions)</h4><canvas id="c-alloc" style="max-height:180px"></canvas></div><div class="chart-box"><h4>P&amp;L % per position</h4><canvas id="c-pos-pnl" style="max-height:180px"></canvas></div></div>
   <div class="pnl-table"><div style="font-size:13px;font-weight:700;color:#374151;padding:0 2px 8px;border-bottom:2px solid #e5e7eb">Open Positions</div>
   <div class="pnl-tbl-wrap"><table><thead><tr><th>Symbol</th><th>Company</th><th>Basket</th><th class="num">Entry</th><th class="num">Entry Px</th><th class="num">Shares</th><th class="num">Amount</th><th class="num">%Port</th><th class="num">Mark</th><th class="num">Trail Stop</th><th class="num">Cur Val</th><th class="num">P&amp;L ₹</th><th class="num">P&amp;L%</th><th>Status</th></tr></thead><tbody>${trows}</tbody>${tfoot}</table></div></div>
   ${pendRows?`<div class="pnl-table" style="margin-top:16px"><div style="font-size:13px;font-weight:700;color:#374151;padding:0 2px 8px;border-bottom:2px solid #e5e7eb">Queued Buys — pending execution at next open</div>
@@ -177,11 +177,15 @@ function renderPublic(){
   <div class="pnl-table" style="margin-top:16px"><div style="display:flex;align-items:baseline;gap:14px;padding:0 2px 8px;border-bottom:2px solid #e5e7eb"><span style="font-size:13px;font-weight:700;color:#374151">Booked P&amp;L</span><span style="font-size:12px;color:${tb>=0?'#16a34a':'#dc2626'};font-weight:700">${tb>=0?'+':''}${inr(tb)}</span><span style="font-size:11px;color:#94a3b8">${bW}W/${bL}L</span></div>
   <div style="padding:8px 2px"><input id="booked-sym" placeholder="Filter symbol…" onkeyup="filterBooked()" style="padding:4px 8px;border:1px solid #dde1e7;border-radius:5px;font-size:11.5px;width:150px"></div>
   <div class="pnl-tbl-wrap" id="booked-tbl-wrap">${buildBookedTable(bookedRows)}</div></div><div style="padding:12px 16px;margin-top:4px;font-size:10.5px;color:#94a3b8;line-height:1.5;border-top:1px solid #eef2f6">Disclaimer: For information only — not investment advice, an offer, or a solicitation. Simulated / paper portfolio: no client capital is managed and no live trades have been executed. Returns are hypothetical and gross of fees, taxes and transaction costs. Simulated and past performance is not indicative of future results; equity investments carry risk of loss.</div>`;}
+
+
 function initPnLCharts(){const pos=PORTFOLIO.positions;
   const colors=['#3b82f6','#10b981','#8b5cf6','#f59e0b','#ec4899','#06b6d4','#84cc16','#f43f5e'];
   destroyChart('alloc');charts['alloc']=new Chart(document.getElementById('c-alloc'),{type:'doughnut',data:{labels:pos.map(p=>p.symbol),datasets:[{data:pos.map(p=>+(p.entry_px*p.shares).toFixed(0)),backgroundColor:colors,borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{font:{size:10}}}}}});
   destroyChart('pos-pnl');const pnls=pos.map(p=>+((getLTP(p)-p.entry_px)/p.entry_px*100).toFixed(2));
   charts['pos-pnl']=new Chart(document.getElementById('c-pos-pnl'),{type:'bar',data:{labels:pos.map(p=>p.symbol),datasets:[{label:'P&L%',data:pnls,backgroundColor:pnls.map(v=>v>=0?'rgba(22,163,74,0.7)':'rgba(220,38,38,0.7)'),borderColor:pnls.map(v=>v>=0?'#15803d':'#991b1b'),borderWidth:1}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{ticks:{callback:v=>v+'%'}}}}});}
+
 document.getElementById('app').innerHTML='<div class="tbl-panel" style="border-radius:10px">'+renderPublic()+'</div>';
 setTimeout(initPnLCharts,60);
-</script></body></html>
+</script>
+</body></html>
