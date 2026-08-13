@@ -1,5 +1,9 @@
 <!DOCTYPE html><script type="application/json" id="cowork-artifact-meta">
-{"name":"N200 Public","schemaVersion":1,"description":"N200 Momentum Strategy — public paper-portfolio P&L view (simulated). Caution Zone."}
+{
+  "name": "N200 Public",
+  "schemaVersion": 1,
+  "description": "N200 Momentum Strategy — paper P&L (simulated). Index 102.77, booked +₹284.9K over 32 closed trades. 🟠 Caution Zone. For information only; not investment advice."
+}
 </script>
 <html lang="en">
 <head>
@@ -15,26 +19,27 @@
 <script>
 const PORTFOLIO={
   capital:10000000,
-  _refreshedAt:"EOD 12-Aug-2026 · Stop breach: DELHIVERY 12-Aug EOD ₹470.25 < stop ₹470.98 → exits at 13-Aug open. New golden cross queued: LT 177 sh @ ₹4,020.00 (stop ₹3,988.35, Industrials breadth 88.9%). 5 held; INFY (+1.39%) & KOTAKBANK (-0.64%) hugging stops. Index 102.91 (-0.23 vs 12-Aug open 103.14). Booked +₹270.4K (31 closed, 16W/15L). 🟠 Caution cap 14, VIX 11.85.",
+  _refreshedAt:"Open 13-Aug-2026 · EXECUTED at NSE open: DELHIVERY exit ₹466.00 (+2.10% vs entry ₹456.40, +₹14.5K booked, stop_breach); LT buy filled 177 sh @ ₹4,010.00 (signal ₹4,020.00, -0.25% slippage, stop ₹3,980.23, Industrials breadth 88.9%). 5 held; INFY (+0.86%) & KOTAKBANK (-0.66%) still hugging stops. Index 102.77 (-0.14 vs 12-Aug EOD 102.91). Booked +₹284.9K (32 closed, 17W/15L). 🟠 Caution cap 14, VIX 11.85.",
   regime_at_entry:"Caution",
   positions:[
-    {symbol:"BALKRISIND",company:"Balkrishna Inds",basket:"Auto",entry_px:2488.0,shares:286,ltp:2496.9,_chg:-0.08,entry_date:"2026-08-06",trail_stop:2475.17,exit_pending:false,note:"held — 12-Aug EOD ₹2,496.90 (+0.36% vs entry ₹2,488.00), stop ₹2,475.17"},
-    {symbol:"INFY",company:"Infosys",basket:"IT",entry_px:1160.0,shares:613,ltp:1176.1,_chg:-1.23,entry_date:"2026-08-07",trail_stop:1174.38,exit_pending:false,note:"held — 12-Aug EOD ₹1,176.10 (+1.39% vs entry ₹1,160.00), stop ₹1,174.38 — close watch"},
-    {symbol:"KOTAKBANK",company:"Kotak Mahindra Bank",basket:"Finance",entry_px:393.0,shares:1812,ltp:390.5,_chg:-0.61,entry_date:"2026-08-07",trail_stop:390.22,exit_pending:false,note:"held — 12-Aug EOD ₹390.50 (-0.64% vs entry ₹393.00), stop ₹390.22 — close watch"},
-    {symbol:"DELHIVERY",company:"Delhivery",basket:"Growth",entry_px:456.4,shares:1509,ltp:470.25,_chg:-0.68,entry_date:"2026-08-10",trail_stop:470.98,exit_pending:true,note:"⚠️ EXIT — 12-Aug EOD ₹470.25 < stop ₹470.98; stop breached, exits at 13-Aug open"},
-    {symbol:"GODFRYPHLP",company:"Godfrey Phillips",basket:"Consumer",entry_px:2223.5,shares:321,ltp:2199.0,_chg:-1.16,entry_date:"2026-08-12",trail_stop:2177.6,exit_pending:false,is_new:true,note:"✅ NEW — bought 12-Aug open ₹2,223.50 · 12-Aug EOD ₹2,199.00 (-1.10% vs entry), stop ₹2,177.60"}
+    {symbol:"BALKRISIND",company:"Balkrishna Inds",basket:"Auto",entry_px:2488.0,shares:286,ltp:2489.0,_chg:-0.32,entry_date:"2026-08-06",trail_stop:2475.17,exit_pending:false,note:"held — 13-Aug open ₹2,489.00 (+0.04% vs entry ₹2,488.00), stop ₹2,475.17"},
+    {symbol:"INFY",company:"Infosys",basket:"IT",entry_px:1160.0,shares:613,ltp:1170.0,_chg:-0.52,entry_date:"2026-08-07",trail_stop:1174.38,exit_pending:false,note:"held — 13-Aug open ₹1,170.00 (+0.86% vs entry ₹1,160.00), stop ₹1,174.38 — close watch"},
+    {symbol:"KOTAKBANK",company:"Kotak Mahindra Bank",basket:"Finance",entry_px:393.0,shares:1812,ltp:390.4,_chg:-0.03,entry_date:"2026-08-07",trail_stop:390.22,exit_pending:false,note:"held — 13-Aug open ₹390.40 (-0.66% vs entry ₹393.00), stop ₹390.22 — close watch"},
+    {symbol:"GODFRYPHLP",company:"Godfrey Phillips",basket:"Consumer",entry_px:2223.5,shares:321,ltp:2196.0,_chg:-0.14,entry_date:"2026-08-12",trail_stop:2177.6,exit_pending:false,is_new:false,note:"held — bought 12-Aug open ₹2,223.50 · 13-Aug open ₹2,196.00 (-1.24% vs entry), stop ₹2,177.60"},
+    {symbol:"LT",company:"Larsen & Toubro",basket:"Industrials",entry_px:4010.0,shares:177,ltp:4010.0,_chg:0.0,entry_date:"2026-08-13",trail_stop:3980.23,exit_pending:false,is_new:true,note:"✅ NEW — bought 13-Aug open ₹4,010.00 · signal ₹4,020.00 (-0.25% slippage), Industrials breadth 88.9%, stop ₹3,980.23"}
   ],
-  pending_buys:[{symbol:"LT",company:"Larsen & Toubro",basket:"Industrials",signal_px:4020.0,shares:177,trail_stop:3988.35}]
+  pending_buys:[]
 };
 const TRADE_LOG=[
-  {date:"2026-08-13",symbol:"DELHIVERY",type:"SELL",basket:"Growth",px:0,shares:1509,amount:0,status:"PENDING",note:"Stop breach — 12-Aug EOD ₹470.25 < stop ₹470.98; will execute at 13-Aug open"},
+  {date:"2026-08-13",symbol:"LT",type:"BUY",basket:"Industrials",px:4010.00,shares:177,amount:709770,status:"OPEN",note:"Auto-executed at 13-Aug open ₹4,010.00 · golden cross EOD 12-Aug, Industrials breadth 88.9% · signal ₹4,020.00 (-0.25% slippage) · stop ₹3,980.23"},
+  {date:"2026-08-13",symbol:"DELHIVERY",type:"SELL",basket:"Growth",px:466.00,shares:1509,amount:703194,status:"CLOSED",pnl_pct:2.103,note:"Auto-executed at 13-Aug open ₹466.00 | stop_breach — 12-Aug EOD ₹470.25 < stop ₹470.98; exit fill +2.10% vs entry ₹456.40 (+₹14.5K)."},
   {date:"2026-08-12",symbol:"GODFRYPHLP",type:"BUY",basket:"Consumer",px:2223.50,shares:321,amount:713744,status:"OPEN",note:"Auto-executed at 12-Aug open ₹2,223.50 · golden cross EOD 11-Aug, Consumer breadth 60% · signal ₹2,224.90 (-0.06% slippage) · stop ₹2,177.60"},
   {date:"2026-08-12",symbol:"HAVELLS",type:"SELL",basket:"Industrials",px:1271.30,shares:594,amount:755152,status:"CLOSED",pnl_pct:5.809,note:"Auto-executed at 12-Aug open ₹1,271.30 | stop_breach — EOD 11-Aug ₹1,274.40 < stop ₹1,280.92; exit fill +5.81% vs entry ₹1,201.50 (+₹41.5K)."},
   {date:"2026-08-12",symbol:"PIIND",type:"SELL",basket:"Chemicals",px:2700.50,shares:255,amount:688628,status:"CLOSED",pnl_pct:-2.804,note:"Auto-executed at 12-Aug open ₹2,700.50 | stop_breach — EOD 11-Aug ₹2,730.00 < stop ₹2,747.82; exit fill -2.80% vs entry ₹2,778.40 (-₹19.9K)."},
   {date:"2026-08-11",symbol:"PNB",type:"SELL",basket:"Finance",px:113.50,shares:6493,amount:736956,status:"CLOSED",pnl_pct:3.182,note:"Auto-executed at 11-Aug open ₹113.50 | stop_breach — EOD 10-Aug ₹113.50 < ratcheted stop ₹113.96; exit fill +3.18% vs entry ₹110.00 (+₹22.7K)."},
-  {date:"2026-08-10",symbol:"DELHIVERY",type:"BUY",basket:"Growth",px:456.40,shares:1509,amount:688708,status:"OPEN",note:"Auto-executed at 10-Aug open ₹456.40 · golden cross EOD 7-Aug, Growth breadth 63% · signal ₹473.30 (-3.57% slippage, gapped down) · stop ₹449.16 → ratcheted ₹470.98 at 10-Aug EOD · 11-Aug open ₹478.10 (+4.75%)"},
+  {date:"2026-08-10",symbol:"DELHIVERY",type:"BUY",basket:"Growth",px:456.40,shares:1509,amount:688708,status:"CLOSED",note:"Auto-executed at 10-Aug open ₹456.40 · golden cross EOD 7-Aug, Growth breadth 63% · signal ₹473.30 (-3.57% slippage, gapped down) · stop ₹449.16 → ratcheted ₹470.98 · breached EOD 12-Aug → exited 13-Aug open ₹466.00 (+2.10%)"},
   {date:"2026-08-07",symbol:"INFY",type:"BUY",basket:"IT",px:1160.00,shares:613,amount:711080,status:"OPEN",note:"Auto-executed at 7-Aug open ₹1,160.00 · golden cross EOD 6-Aug, IT breadth 100% · signal ₹1,165.00 (-0.43% slippage) · stop ₹1,142.85"},
-  {date:"2026-08-07",symbol:"PIIND",type:"BUY",basket:"Chemicals",px:2778.40,shares:255,amount:708492,status:"OPEN",note:"Auto-executed at 7-Aug open ₹2,778.40 · golden cross EOD 6-Aug, Chemicals breadth 67% · signal ₹2,796.00 (-0.63% slippage) · stop ₹2,747.82"},
+  {date:"2026-08-07",symbol:"PIIND",type:"BUY",basket:"Chemicals",px:2778.40,shares:255,amount:708492,status:"CLOSED",note:"Auto-executed at 7-Aug open ₹2,778.40 · golden cross EOD 6-Aug, Chemicals breadth 67% · signal ₹2,796.00 (-0.63% slippage) · stop ₹2,747.82"},
   {date:"2026-08-07",symbol:"KOTAKBANK",type:"BUY",basket:"Finance",px:393.00,shares:1812,amount:712116,status:"OPEN",note:"Auto-executed at 7-Aug open ₹393.00 · golden cross EOD 6-Aug, Finance breadth 71% · signal ₹394.00 (-0.25% slippage) · stop ₹389.92"},
   {date:"2026-08-07",symbol:"TECHM",type:"SELL",basket:"IT",px:1639.80,shares:457,amount:749389,status:"CLOSED",pnl_pct:8.668,note:"Auto-executed at 7-Aug open ₹1,639.80 | stop_breach — EOD 6-Aug ₹1,632.20 < stop ₹1,645.27; exit fill +8.67% vs entry ₹1,509.00 (+₹59.8K)."},
   {date:"2026-08-07",symbol:"HEROMOTOCO",type:"SELL",basket:"Auto",px:5541.00,shares:140,amount:775740,status:"CLOSED",pnl_pct:8.477,note:"Auto-executed at 7-Aug open ₹5,541.00 | stop_breach — EOD 6-Aug ₹5,550.50 < stop ₹5,626.38; exit fill +8.48% vs entry ₹5,108.00 (+₹60.6K)."},
@@ -134,7 +139,7 @@ function renderPublic(){
   const pv=PORTFOLIO.capital+tb+tpnl;
   const cash=pv-tv;
   const pv_idx=(pv/PORTFOLIO.capital*100).toFixed(2);
-  const MARK_DATE=new Date('2026-08-12');
+  const MARK_DATE=new Date('2026-08-13');
   function xirrCalc(flows){if(flows.length<2)return null;const t0=flows[0].date;const yrs=flows.map(f=>(f.date-t0)/(365*24*3600*1000));const npv=r=>flows.reduce((s,f,i)=>s+f.amount/Math.pow(1+r,yrs[i]),0);let lo=-0.9999,hi=1000,flo=npv(lo),fhi=npv(hi);if(flo*fhi>0)return null;for(let k=0;k<300;k++){const mid=(lo+hi)/2,fm=npv(mid);if(Math.abs(fm)<1e-4)return mid;if(flo*fm<0){hi=mid;}else{lo=mid;flo=fm;}}return (lo+hi)/2;}
   const _cf=[];
   ct.forEach(t=>{const cst=t.amount/(1+t.pnl_pct/100);const cand=TRADE_LOG.filter(x=>x.type==='BUY'&&x.symbol===t.symbol&&x.date<=t.date).sort((a,b)=>a.date<b.date?-1:1);const ed=cand.length?cand[cand.length-1].date:t.date;_cf.push({amount:-cst,date:new Date(ed)});_cf.push({amount:t.amount,date:new Date(t.date)});});
