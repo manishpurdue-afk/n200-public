@@ -2,7 +2,9 @@
 {
   "name": "N200 Public",
   "schemaVersion": 1,
-  "description": "N200 Momentum Strategy — public P&L view. 14-Aug-2026 open: 3 open positions, booked +Rs242.2K across 34 closed trades, index 102.59. Simulated paper portfolio."
+  "description": "N200 Momentum Strategy — simulated paper portfolio P&L (open positions, queued buys, booked trades). Sanitized public view.",
+  "mcpTools": [],
+  "mcpServerNames": []
 }
 </script>
 <html lang="en">
@@ -19,29 +21,31 @@
 <script>
 const PORTFOLIO={
   capital:10000000,
-  _refreshedAt:"OPEN 14-Aug-2026 · 2 stop-breach exits executed at the open: BALKRISIND 286 sh @ ₹2,410.00 (-3.14% vs entry ₹2,488.00, -₹22.3K) and GODFRYPHLP 321 sh @ ₹2,160.00 (-2.86% vs entry ₹2,223.50, -₹20.4K) — both filled exactly at their 13-Aug EOD marks, zero gap slippage. No buys were queued. Book marked at today's open: INFY ₹1,170.40 (+0.90%) — opened BELOW stop ₹1,174.38, EOD scan will decide; KOTAKBANK ₹393.10 (+0.03%); LT ₹4,068.70 (+1.46%), stop ₹4,039.21 intact. 3 held / 11 free. Index 102.59 (-0.02 vs 13-Aug EOD 102.61). Booked +₹242.2K (34 closed, 17W/17L). 🟠 Caution cap 14, Nifty 24,395.85 (-1.40% vs 200-DMA), VIX 11.42.",
+  _refreshedAt:"EOD 14-Aug-2026 · NSE bhavcopy, 182 symbols, overall breadth 53.3%. INFY closed ₹1,169.20 — BELOW its ₹1,174.38 trailing stop by 0.44% — and is flagged for exit at the Monday 17-Aug open; the trade is still +0.79% vs entry ₹1,160.00, so the stop books a small gain rather than a loss. KOTAKBANK ₹391.15 clings 0.24% above stop ₹390.22 — the tightest hold on the book. LT ₹4,057.00 sits 0.44% clear of ₹4,039.21. One golden cross tonight: BDL ₹1,398.00, Industrials breadth 77.8%, queued 510 sh with stop ₹1,379.85. Index 102.53 (-0.06 vs today's open 102.59, -0.08 vs 13-Aug EOD 102.61). Booked +₹242.2K (34 closed, 17W/17L). 🟠 Caution cap 14, Nifty 24,366.00 (-1.49% vs 200-DMA), VIX 11.31.",
   regime_at_entry:"Caution",
   positions:[
-    {symbol:"INFY",company:"Infosys",basket:"IT",entry_px:1160.0,shares:613,ltp:1170.4,_chg:0.90,entry_date:"2026-08-07",trail_stop:1174.38,exit_pending:false,note:"held — marked at 14-Aug open ₹1,170.40 (+0.90% vs entry ₹1,160.00) · opened below stop ₹1,174.38 — stop is evaluated at EOD, close watch"},
-    {symbol:"KOTAKBANK",company:"Kotak Mahindra Bank",basket:"Finance",entry_px:393.0,shares:1812,ltp:393.1,_chg:0.03,entry_date:"2026-08-07",trail_stop:390.22,exit_pending:false,note:"held — marked at 14-Aug open ₹393.10 (+0.03% vs entry ₹393.00), stop ₹390.22 intact"},
-    {symbol:"LT",company:"Larsen & Toubro",basket:"Industrials",entry_px:4010.0,shares:177,ltp:4068.7,_chg:1.46,entry_date:"2026-08-13",trail_stop:4039.21,exit_pending:false,is_new:false,note:"held — marked at 14-Aug open ₹4,068.70 (+1.46% vs entry ₹4,010.00), stop ₹4,039.21 intact"}
+    {symbol:"INFY",company:"Infosys",basket:"IT",entry_px:1160.0,shares:613,ltp:1169.2,_chg:0.79,entry_date:"2026-08-07",trail_stop:1174.38,exit_pending:true,note:"⚠️ EXIT QUEUED — EOD ₹1,169.20 closed below stop ₹1,174.38 (-0.44%); executes at the Monday 17-Aug open. Still +0.79% vs entry ₹1,160.00, so the stop locks in a small gain."},
+    {symbol:"KOTAKBANK",company:"Kotak Mahindra Bank",basket:"Finance",entry_px:393.0,shares:1812,ltp:391.15,_chg:-0.47,entry_date:"2026-08-07",trail_stop:390.22,exit_pending:false,note:"held — EOD ₹391.15 (-0.47% vs entry ₹393.00), just 0.24% above stop ₹390.22 · tightest hold on the book, Finance breadth 48%"},
+    {symbol:"LT",company:"Larsen & Toubro",basket:"Industrials",entry_px:4010.0,shares:177,ltp:4057.0,_chg:1.17,entry_date:"2026-08-13",trail_stop:4039.21,exit_pending:false,is_new:false,note:"held — EOD ₹4,057.00 (+1.17% vs entry ₹4,010.00), 0.44% clear of stop ₹4,039.21, Industrials breadth 77.8%"}
   ],
-  pending_buys:[]
+  pending_buys:[
+    {symbol:"BDL",company:"Bharat Dynamics",basket:"Industrials",signal_px:1398.0,shares:510,trail_stop:1379.85}
+  ]
 };
-
 const TRADE_LOG=[
+  {date:"2026-08-14",symbol:"INFY",type:"SELL",basket:"IT",px:0,shares:613,amount:0,status:"PENDING",note:"Stop breach — EOD 14-Aug ₹1,169.20 < trailing stop ₹1,174.38 (-0.44%); will execute at the Monday 17-Aug open. Position still +0.79% vs entry ₹1,160.00."},
   {date:"2026-08-14",symbol:"BALKRISIND",type:"SELL",basket:"Auto",px:2410.00,shares:286,amount:689260,status:"CLOSED",pnl_pct:-3.135,note:"Auto-executed at open ₹2,410.00 | stop_breach — 13-Aug EOD ₹2,410.00 < stop ₹2,475.17; exit fill -3.14% vs entry ₹2,488.00 (-₹22.3K). No gap: opened exactly at the EOD mark."},
   {date:"2026-08-14",symbol:"GODFRYPHLP",type:"SELL",basket:"Consumer",px:2160.00,shares:321,amount:693360,status:"CLOSED",pnl_pct:-2.856,note:"Auto-executed at open ₹2,160.00 | stop_breach — 13-Aug EOD ₹2,160.00 < stop ₹2,177.60; exit fill -2.86% vs entry ₹2,223.50 (-₹20.4K). Two-day round trip, no gap slippage."},
-  {date:"2026-08-13",symbol:"LT",type:"BUY",basket:"Industrials",px:4010.00,shares:177,amount:709770,status:"OPEN",note:"Auto-executed at 13-Aug open ₹4,010.00 · golden cross EOD 12-Aug, Industrials breadth 88.9% · signal ₹4,020.00 (-0.25% slippage) · stop ratcheted ₹4,039.21 · 14-Aug open ₹4,068.70 (+1.46%)"},
+  {date:"2026-08-13",symbol:"LT",type:"BUY",basket:"Industrials",px:4010.00,shares:177,amount:709770,status:"OPEN",note:"Auto-executed at 13-Aug open ₹4,010.00 · golden cross EOD 12-Aug, Industrials breadth 88.9% · signal ₹4,020.00 (-0.25% slippage) · stop ₹4,039.21 · 14-Aug EOD ₹4,057.00 (+1.17%)"},
   {date:"2026-08-13",symbol:"DELHIVERY",type:"SELL",basket:"Growth",px:466.00,shares:1509,amount:703194,status:"CLOSED",pnl_pct:2.103,note:"Auto-executed at 13-Aug open ₹466.00 | stop_breach — 12-Aug EOD ₹470.25 < stop ₹470.98; exit fill +2.10% vs entry ₹456.40 (+₹14.5K)."},
   {date:"2026-08-12",symbol:"GODFRYPHLP",type:"BUY",basket:"Consumer",px:2223.50,shares:321,amount:713744,status:"CLOSED",note:"Auto-executed at 12-Aug open ₹2,223.50 · golden cross EOD 11-Aug, Consumer breadth 60% · signal ₹2,224.90 (-0.06% slippage) · stop ₹2,177.60 · breached 13-Aug EOD → exited 14-Aug open ₹2,160.00 (-2.86%)"},
   {date:"2026-08-12",symbol:"HAVELLS",type:"SELL",basket:"Industrials",px:1271.30,shares:594,amount:755152,status:"CLOSED",pnl_pct:5.809,note:"Auto-executed at 12-Aug open ₹1,271.30 | stop_breach — EOD 11-Aug ₹1,274.40 < stop ₹1,280.92; exit fill +5.81% vs entry ₹1,201.50 (+₹41.5K)."},
   {date:"2026-08-12",symbol:"PIIND",type:"SELL",basket:"Chemicals",px:2700.50,shares:255,amount:688628,status:"CLOSED",pnl_pct:-2.804,note:"Auto-executed at 12-Aug open ₹2,700.50 | stop_breach — EOD 11-Aug ₹2,730.00 < stop ₹2,747.82; exit fill -2.80% vs entry ₹2,778.40 (-₹19.9K)."},
   {date:"2026-08-11",symbol:"PNB",type:"SELL",basket:"Finance",px:113.50,shares:6493,amount:736956,status:"CLOSED",pnl_pct:3.182,note:"Auto-executed at 11-Aug open ₹113.50 | stop_breach — EOD 10-Aug ₹113.50 < ratcheted stop ₹113.96; exit fill +3.18% vs entry ₹110.00 (+₹22.7K)."},
   {date:"2026-08-10",symbol:"DELHIVERY",type:"BUY",basket:"Growth",px:456.40,shares:1509,amount:688708,status:"CLOSED",note:"Auto-executed at 10-Aug open ₹456.40 · golden cross EOD 7-Aug, Growth breadth 63% · signal ₹473.30 (-3.57% slippage, gapped down) · stop ₹449.16 → ratcheted ₹470.98 · breached EOD 12-Aug → exited 13-Aug open ₹466.00 (+2.10%)"},
-  {date:"2026-08-07",symbol:"INFY",type:"BUY",basket:"IT",px:1160.00,shares:613,amount:711080,status:"OPEN",note:"Auto-executed at 7-Aug open ₹1,160.00 · golden cross EOD 6-Aug, IT breadth 100% · signal ₹1,165.00 (-0.43% slippage) · stop ₹1,142.85 → ratcheted ₹1,174.38 · 14-Aug open ₹1,170.40 below stop, EOD decides"},
+  {date:"2026-08-07",symbol:"INFY",type:"BUY",basket:"IT",px:1160.00,shares:613,amount:711080,status:"OPEN",note:"Auto-executed at 7-Aug open ₹1,160.00 · golden cross EOD 6-Aug, IT breadth 100% · signal ₹1,165.00 (-0.43% slippage) · stop ₹1,142.85 → ratcheted ₹1,174.38 · breached EOD 14-Aug ₹1,169.20 → exits Monday 17-Aug open"},
   {date:"2026-08-07",symbol:"PIIND",type:"BUY",basket:"Chemicals",px:2778.40,shares:255,amount:708492,status:"CLOSED",note:"Auto-executed at 7-Aug open ₹2,778.40 · golden cross EOD 6-Aug, Chemicals breadth 67% · signal ₹2,796.00 (-0.63% slippage) · stop ₹2,747.82"},
-  {date:"2026-08-07",symbol:"KOTAKBANK",type:"BUY",basket:"Finance",px:393.00,shares:1812,amount:712116,status:"OPEN",note:"Auto-executed at 7-Aug open ₹393.00 · golden cross EOD 6-Aug, Finance breadth 71% · signal ₹394.00 (-0.25% slippage) · stop ₹389.92 → ratcheted ₹390.22"},
+  {date:"2026-08-07",symbol:"KOTAKBANK",type:"BUY",basket:"Finance",px:393.00,shares:1812,amount:712116,status:"OPEN",note:"Auto-executed at 7-Aug open ₹393.00 · golden cross EOD 6-Aug, Finance breadth 71% · signal ₹394.00 (-0.25% slippage) · stop ₹389.92 → ratcheted ₹390.22 · 14-Aug EOD ₹391.15, 0.24% above stop"},
   {date:"2026-08-07",symbol:"TECHM",type:"SELL",basket:"IT",px:1639.80,shares:457,amount:749389,status:"CLOSED",pnl_pct:8.668,note:"Auto-executed at 7-Aug open ₹1,639.80 | stop_breach — EOD 6-Aug ₹1,632.20 < stop ₹1,645.27; exit fill +8.67% vs entry ₹1,509.00 (+₹59.8K)."},
   {date:"2026-08-07",symbol:"HEROMOTOCO",type:"SELL",basket:"Auto",px:5541.00,shares:140,amount:775740,status:"CLOSED",pnl_pct:8.477,note:"Auto-executed at 7-Aug open ₹5,541.00 | stop_breach — EOD 6-Aug ₹5,550.50 < stop ₹5,626.38; exit fill +8.48% vs entry ₹5,108.00 (+₹60.6K)."},
   {date:"2026-08-07",symbol:"JUBLFOOD",type:"SELL",basket:"Retail",px:470.00,shares:1536,amount:721920,status:"CLOSED",pnl_pct:-0.170,note:"Auto-executed at 7-Aug open ₹470.00 | stop_breach — EOD 6-Aug ₹473.00 < stop ₹478.81; exit fill -0.17% vs entry ₹470.80 (-₹1.2K)."},
@@ -105,20 +109,15 @@ const TRADE_LOG=[
   {date:"2026-07-01",symbol:"BAJAJFINSV",type:"BUY",basket:"Defensive",px:1797.60,shares:384,amount:690278,status:"CLOSED",note:"Exited EOD Jul 6"},
   {date:"2026-07-01",symbol:"PAYTM",type:"BUY",basket:"Growth",px:1203.70,shares:573,amount:689319,status:"CLOSED",note:"Exited open 20-Jul ₹1,350 +12.15%"}
 ];
-
 const n=(v,d=2)=>(v==null||isNaN(v))?'--':Number(v).toFixed(d);
 const inr=(v)=>v==null?'--':'₹'+Math.abs(v).toLocaleString('en-IN',{maximumFractionDigits:0});
 const pill=(b)=>{const cls=b==='Defensive'||b==='Pharma'||b==='Finance'||b==='FMCG'||b==='Cement'||b==='Health'||b==='Consumer'||b==='Insurance'?'D':b==='Cyclical'||b==='Metals'||b==='Energy'||b==='Auto'||b==='Infra'?'C':'G';const lbl=cls==='D'?'DEF':cls==='C'?'CYC':'GRW';return`<span class="pill pill-${cls}">${lbl}</span>`};
-const mom=(v)=>{if(v==null)return'--';return`<span class="${v>=0?'g':'r'}">${v>=0?'+':''}${v.toFixed(1)}%</span>`};
-const heatColor=(v)=>{if(v==null)return'#f8fafc';if(v>=10)return'#15803d';if(v>=5)return'#22c55e';if(v>=2)return'#86efac';if(v>=0)return'#d1fae5';if(v>=-2)return'#fee2e2';if(v>=-5)return'#fca5a5';if(v>=-10)return'#ef4444';return'#991b1b'};
-const heatTxt=(v)=>v>=5||v<=-5?'#fff':'#1a1a2e';
 let charts={};
 function destroyChart(id){if(charts[id]){charts[id].destroy();delete charts[id];}}
 function getLTP(p){return p.ltp;}
 function buildBookedTable(rows){if(!rows.length)return'<div class="empty">No booked trades match.</div>';
   const body=rows.map(r=>{const pc=r.pnl_amt>=0?'g':'r';return`<tr><td class="sym">${r.symbol}</td><td class="num">${r.shares.toLocaleString('en-IN')}</td><td class="num" style="font-size:10px;white-space:nowrap">${r.entry_date}</td><td class="num">${n(r.entry_px)}</td><td class="num">${inr(r.cost)}</td><td class="num" style="font-size:10px;white-space:nowrap">${r.exit_date}</td><td class="num">${n(r.exit_px)}</td><td class="num ${pc}">${r.pnl_amt>=0?'+':''}${inr(r.pnl_amt)}</td><td class="num ${pc}">${r.pnl_pct>=0?'+':''}${n(r.pnl_pct)}%</td></tr>`;}).join('');
   return`<table><thead><tr><th>Symbol</th><th class="num">Shares</th><th class="num">Entry Date</th><th class="num">Entry Px</th><th class="num">Cost</th><th class="num">Exit Date</th><th class="num">Exit Px</th><th class="num">P&amp;L ₹</th><th class="num">P&amp;L%</th></tr></thead><tbody>${body}</tbody></table>`;}
-
 function filterBooked(){const sym=(document.getElementById('booked-sym').value||'').toUpperCase();const rows=(window.__BOOKED||[]).filter(r=>!sym||r.symbol.toUpperCase().includes(sym));document.getElementById('booked-tbl-wrap').innerHTML=buildBookedTable(rows);}
 function renderPublic(){
   const pos=PORTFOLIO.positions;let ti=0,tv=0;
@@ -192,15 +191,11 @@ function renderPublic(){
   <div class="pnl-table" style="margin-top:16px"><div style="display:flex;align-items:baseline;gap:14px;padding:0 2px 8px;border-bottom:2px solid #e5e7eb"><span style="font-size:13px;font-weight:700;color:#374151">Booked P&amp;L</span><span style="font-size:12px;color:${tb>=0?'#16a34a':'#dc2626'};font-weight:700">${tb>=0?'+':''}${inr(tb)}</span><span style="font-size:11px;color:#94a3b8">${bW}W/${bL}L</span></div>
   <div style="padding:8px 2px"><input id="booked-sym" placeholder="Filter symbol…" onkeyup="filterBooked()" style="padding:4px 8px;border:1px solid #dde1e7;border-radius:5px;font-size:11.5px;width:150px"></div>
   <div class="pnl-tbl-wrap" id="booked-tbl-wrap">${buildBookedTable(bookedRows)}</div></div><div style="padding:12px 16px;margin-top:4px;font-size:10.5px;color:#94a3b8;line-height:1.5;border-top:1px solid #eef2f6">Disclaimer: For information only — not investment advice, an offer, or a solicitation. Simulated / paper portfolio: no client capital is managed and no live trades have been executed. Returns are hypothetical and gross of fees, taxes and transaction costs. Simulated and past performance is not indicative of future results; equity investments carry risk of loss.</div>`;}
-
-
 function initPnLCharts(){const pos=PORTFOLIO.positions;
   const colors=['#3b82f6','#10b981','#8b5cf6','#f59e0b','#ec4899','#06b6d4','#84cc16','#f43f5e'];
   destroyChart('alloc');charts['alloc']=new Chart(document.getElementById('c-alloc'),{type:'doughnut',data:{labels:pos.map(p=>p.symbol),datasets:[{data:pos.map(p=>+(p.entry_px*p.shares).toFixed(0)),backgroundColor:colors,borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{font:{size:10}}}}}});
   destroyChart('pos-pnl');const pnls=pos.map(p=>+((getLTP(p)-p.entry_px)/p.entry_px*100).toFixed(2));
   charts['pos-pnl']=new Chart(document.getElementById('c-pos-pnl'),{type:'bar',data:{labels:pos.map(p=>p.symbol),datasets:[{label:'P&L%',data:pnls,backgroundColor:pnls.map(v=>v>=0?'rgba(22,163,74,0.7)':'rgba(220,38,38,0.7)'),borderColor:pnls.map(v=>v>=0?'#15803d':'#991b1b'),borderWidth:1}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{ticks:{callback:v=>v+'%'}}}}});}
-
-
 document.getElementById('app').innerHTML='<div class="tbl-panel" style="border-radius:10px">'+renderPublic()+'</div>';
 setTimeout(initPnLCharts,60);
 </script>
