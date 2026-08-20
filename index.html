@@ -28,17 +28,15 @@ const PORTFOLIO={
   _refreshedAt:"",
   regime_at_entry:"Bear",
   positions:[
-    {symbol:"LT",company:"Larsen & Toubro",basket:"Industrials",entry_px:4010.0,shares:177,ltp:4041.3,_chg:-0.56,entry_date:"2026-08-13",trail_stop:4055.05,exit_pending:true,is_new:false,note:""},
-    {symbol:"CANBK",company:"Canara Bank",basket:"Finance",entry_px:130.0,shares:5448,ltp:129.08,_chg:-0.02,entry_date:"2026-08-18",trail_stop:128.72,exit_pending:false,is_new:false,note:""},
-    {symbol:"POWERINDIA",company:"Hitachi Energy India",basket:"Industrials",entry_px:35100.0,shares:20,ltp:33800.0,_chg:-3.70,entry_date:"2026-08-19",trail_stop:34519.11,exit_pending:true,is_new:false,note:""},
-    {symbol:"BANKINDIA",company:"Bank of India",basket:"Finance",entry_px:142.1,shares:5026,ltp:141.7,_chg:-0.28,entry_date:"2026-08-19",trail_stop:140.7,exit_pending:false,is_new:false,note:""}
+    {symbol:"CANBK",company:"Canara Bank",basket:"Finance",entry_px:130.0,shares:5448,ltp:129.53,_chg:0.35,entry_date:"2026-08-18",trail_stop:128.72,exit_pending:false,is_new:false,note:""},
+    {symbol:"BANKINDIA",company:"Bank of India",basket:"Finance",entry_px:142.1,shares:5026,ltp:142.7,_chg:0.71,entry_date:"2026-08-19",trail_stop:140.7,exit_pending:false,is_new:false,note:""}
   ],
   pending_buys:[]
 };
 const TRADE_LOG=[
-  {date:"2026-08-20",symbol:"POWERINDIA",type:"SELL",basket:"Industrials",px:0,shares:20,amount:0,status:"PENDING",note:""},
-  {date:"2026-08-20",symbol:"LT",type:"SELL",basket:"Industrials",px:0,shares:177,amount:0,status:"PENDING",note:""},
-  {date:"2026-08-19",symbol:"POWERINDIA",type:"BUY",basket:"Industrials",px:35100.00,shares:20,amount:702000,status:"OPEN",note:""},
+  {date:"2026-08-20",symbol:"POWERINDIA",type:"SELL",basket:"Industrials",px:34045.00,shares:20,amount:680900,status:"CLOSED",pnl_pct:-3.006,note:""},
+  {date:"2026-08-20",symbol:"LT",type:"SELL",basket:"Industrials",px:4050.50,shares:177,amount:716938,status:"CLOSED",pnl_pct:1.010,note:""},
+  {date:"2026-08-19",symbol:"POWERINDIA",type:"BUY",basket:"Industrials",px:35100.00,shares:20,amount:702000,status:"CLOSED",note:""},
   {date:"2026-08-19",symbol:"BANKINDIA",type:"BUY",basket:"Finance",px:142.10,shares:5026,amount:714195,status:"OPEN",note:""},
   {date:"2026-08-19",symbol:"KOTAKBANK",type:"SELL",basket:"Finance",px:387.00,shares:1812,amount:701244,status:"CLOSED",pnl_pct:-1.527,note:""},
   {date:"2026-08-19",symbol:"IRCTC",type:"SELL",basket:"Growth",px:492.00,shares:1428,amount:702576,status:"CLOSED",pnl_pct:-1.590,note:""},
@@ -49,7 +47,7 @@ const TRADE_LOG=[
   {date:"2026-08-17",symbol:"INFY",type:"SELL",basket:"IT",px:1163.90,shares:613,amount:713471,status:"CLOSED",pnl_pct:0.336,note:""},
   {date:"2026-08-14",symbol:"BALKRISIND",type:"SELL",basket:"Auto",px:2410.00,shares:286,amount:689260,status:"CLOSED",pnl_pct:-3.135,note:""},
   {date:"2026-08-14",symbol:"GODFRYPHLP",type:"SELL",basket:"Consumer",px:2160.00,shares:321,amount:693360,status:"CLOSED",pnl_pct:-2.856,note:""},
-  {date:"2026-08-13",symbol:"LT",type:"BUY",basket:"Industrials",px:4010.00,shares:177,amount:709770,status:"OPEN",note:""},
+  {date:"2026-08-13",symbol:"LT",type:"BUY",basket:"Industrials",px:4010.00,shares:177,amount:709770,status:"CLOSED",note:""},
   {date:"2026-08-13",symbol:"DELHIVERY",type:"SELL",basket:"Growth",px:466.00,shares:1509,amount:703194,status:"CLOSED",pnl_pct:2.103,note:""},
   {date:"2026-08-12",symbol:"GODFRYPHLP",type:"BUY",basket:"Consumer",px:2223.50,shares:321,amount:713744,status:"CLOSED",note:""},
   {date:"2026-08-12",symbol:"HAVELLS",type:"SELL",basket:"Industrials",px:1271.30,shares:594,amount:755152,status:"CLOSED",pnl_pct:5.809,note:""},
@@ -144,7 +142,7 @@ function renderPublic(){
   const pv=PORTFOLIO.capital+tb+tpnl;
   const cash=pv-tv;
   const pv_idx=(pv/PORTFOLIO.capital*100).toFixed(2);
-  const MARK_DATE=new Date('2026-08-19');
+  const MARK_DATE=new Date('2026-08-20');
   function xirrCalc(flows){if(flows.length<2)return null;const t0=flows[0].date;const yrs=flows.map(f=>(f.date-t0)/(365*24*3600*1000));const npv=r=>flows.reduce((s,f,i)=>s+f.amount/Math.pow(1+r,yrs[i]),0);let lo=-0.9999,hi=1000,flo=npv(lo),fhi=npv(hi);if(flo*fhi>0)return null;for(let k=0;k<300;k++){const mid=(lo+hi)/2,fm=npv(mid);if(Math.abs(fm)<1e-4)return mid;if(flo*fm<0){hi=mid;}else{lo=mid;flo=fm;}}return (lo+hi)/2;}
   const _cf=[];
   ct.forEach(t=>{const cst=t.amount/(1+t.pnl_pct/100);const cand=TRADE_LOG.filter(x=>x.type==='BUY'&&x.symbol===t.symbol&&x.date<=t.date).sort((a,b)=>a.date<b.date?-1:1);const ed=cand.length?cand[cand.length-1].date:t.date;_cf.push({amount:-cst,date:new Date(ed)});_cf.push({amount:t.amount,date:new Date(t.date)});});
@@ -161,7 +159,7 @@ function renderPublic(){
     <div class="card"><div class="lbl">Cash</div><div class="val g">${inr(cash)}</div><div class="sub">${(cash/PORTFOLIO.capital*100).toFixed(1)}% idle</div></div>
     <div class="card"><div class="lbl">Open P&amp;L</div><div class="val ${tpnl>=0?'g':'r'}">${tpnl>=0?'+':''}${inr(tpnl)}</div><div class="sub">${tpnl>=0?'+':''}${n(tpct)}%</div></div>
     <div class="card"><div class="lbl">Booked P&amp;L</div><div class="val ${tb>=0?'g':'r'}">${tb>=0?'+':''}${inr(tb)}</div><div class="sub">${ct.length} closed trades</div></div>
-    <div class="card"><div class="lbl">Positions</div><div class="val">${pos.length}<span style="font-size:11px;color:#aaa">/8</span></div><div class="sub" style="color:#dc2626">2 exiting at open · 6 free</div></div>
+    <div class="card"><div class="lbl">Positions</div><div class="val">${pos.length}<span style="font-size:11px;color:#aaa">/8</span></div><div class="sub" style="color:#16a34a">2 exited at open · 6 free</div></div>
   </div>`;
   const trows=rows.map(r=>{const chg=r._chg??null;
     const ls=chg!=null?`<b>${n(r.cp)}</b> <span style="font-size:10px;color:${chg>=0?'#16a34a':'#dc2626'}">${chg>=0?'+':''}${chg.toFixed(2)}%</span>`:`<b>${n(r.cp)}</b>`;
@@ -193,7 +191,7 @@ function renderPublic(){
   <div class="pnl-tbl-wrap"><table><thead><tr><th>Symbol</th><th>Company</th><th>Basket</th><th class="num">Signal Px</th><th class="num">Shares</th><th class="num">Notional</th><th class="num">Stop</th><th>Status</th></tr></thead><tbody>${pendRows}</tbody></table></div></div>`:''}
   <div class="pnl-table" style="margin-top:16px"><div style="display:flex;align-items:baseline;gap:14px;padding:0 2px 8px;border-bottom:2px solid #e5e7eb"><span style="font-size:13px;font-weight:700;color:#374151">Booked P&amp;L</span><span style="font-size:12px;color:${tb>=0?'#16a34a':'#dc2626'};font-weight:700">${tb>=0?'+':''}${inr(tb)}</span><span style="font-size:11px;color:#94a3b8">${bW}W/${bL}L</span></div>
   <div style="padding:8px 2px"><input id="booked-sym" placeholder="Filter symbol…" onkeyup="filterBooked()" style="padding:4px 8px;border:1px solid #dde1e7;border-radius:5px;font-size:11.5px;width:150px"></div>
-  <div class="pnl-tbl-wrap" id="booked-tbl-wrap">${buildBookedTable(bookedRows)}</div></div><div style="padding:12px 16px;margin-top:4px;font-size:10.5px;color:#94a3b8;line-height:1.5;border-top:1px solid #eef2f6">Disclaimer: For information only — not investment advice, an offer, or a solicitation. Simulated / paper portfolio: no client capital is managed and no live trades have been executed. Returns are hypothetical and gross of fees, taxes and transaction costs. Simulated and past performance is not indicative of future results; equity investments carry risk of loss.</div>`;}
+  <div class="pnl-tbl-wrap" id="booked-tbl-wrap">${buildBookedTable(bookedRows)}</div></div<div style="padding:12px 16px;margin-top:4px;font-size:10.5px;color:#94a3b8;line-height:1.5;border-top:1px solid #eef2f6">Disclaimer: For information only — not investment advice, an offer, or a solicitation. Simulated / paper portfolio: no client capital is managed and no live trades have been executed. Returns are hypothetical and gross of fees, taxes and transaction costs. Simulated and past performance is not indicative of future results; equity investments carry risk of loss.</div>`;}
 
 
 function initPnLCharts(){const pos=PORTFOLIO.positions;
