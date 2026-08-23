@@ -22,6 +22,9 @@ const inr=(v)=>v==null?'--':'₹'+Math.abs(v).toLocaleString('en-IN',{maximumFra
 const pill=(b)=>{const cls=b==='Defensive'||b==='Pharma'||b==='Finance'||b==='FMCG'||b==='Cement'||b==='Health'||b==='Consumer'||b==='Insurance'?'D':b==='Cyclical'||b==='Metals'||b==='Energy'||b==='Auto'||b==='Infra'?'C':'G';const lbl=cls==='D'?'DEF':cls==='C'?'CYC':'GRW';return`<span class="pill pill-${cls}">${lbl}</span>`};
 let charts={};
 function destroyChart(id){if(charts[id]){charts[id].destroy();delete charts[id];}}
+function entryBuy(t){const c=TRADE_LOG.filter(x=>x.type==='BUY'&&x.symbol===t.symbol&&x.date<=t.date).sort((a,b)=>a.date<b.date?-1:1);return c.length?c[c.length-1]:null;}
+function bookedCost(t){const b=entryBuy(t);return b?b.px*t.shares:t.amount/(1+t.pnl_pct/100);}
+function bookedPnl(t){return Math.round(t.px*t.shares-bookedCost(t));}
 function getLTP(p){return p.ltp;}
 const PORTFOLIO={
   capital:10000000,
@@ -138,14 +141,14 @@ function renderPublic(){
     return{...p,cp,cost,cur,pnl,pp,prt,aboveStop,isNew,isExit,rowStyle,tag};});
   const tpnl=tv-ti;const tpct=tpnl/ti*100;
   const ct=TRADE_LOG.filter(t=>t.status==='CLOSED'&&t.pnl_pct!=null&&t.type==='SELL');
-  const tb=ct.reduce((s,t)=>{const c=t.amount/(1+t.pnl_pct/100);return s+Math.round(c*t.pnl_pct/100);},0);
+  const tb=ct.reduce((s,t)=>s+bookedPnl(t),0);
   const pv=PORTFOLIO.capital+tb+tpnl;
   const cash=pv-tv;
   const pv_idx=(pv/PORTFOLIO.capital*100).toFixed(2);
   const MARK_DATE=new Date('2026-08-20');
   function xirrCalc(flows){if(flows.length<2)return null;const t0=flows[0].date;const yrs=flows.map(f=>(f.date-t0)/(365*24*3600*1000));const npv=r=>flows.reduce((s,f,i)=>s+f.amount/Math.pow(1+r,yrs[i]),0);let lo=-0.9999,hi=1000,flo=npv(lo),fhi=npv(hi);if(flo*fhi>0)return null;for(let k=0;k<300;k++){const mid=(lo+hi)/2,fm=npv(mid);if(Math.abs(fm)<1e-4)return mid;if(flo*fm<0){hi=mid;}else{lo=mid;flo=fm;}}return (lo+hi)/2;}
   const _cf=[];
-  ct.forEach(t=>{const cst=t.amount/(1+t.pnl_pct/100);const cand=TRADE_LOG.filter(x=>x.type==='BUY'&&x.symbol===t.symbol&&x.date<=t.date).sort((a,b)=>a.date<b.date?-1:1);const ed=cand.length?cand[cand.length-1].date:t.date;_cf.push({amount:-cst,date:new Date(ed)});_cf.push({amount:t.amount,date:new Date(t.date)});});
+  ct.forEach(t=>{const b=entryBuy(t);_cf.push({amount:-bookedCost(t),date:new Date(b?b.date:t.date)});_cf.push({amount:t.px*t.shares,date:new Date(t.date)});});
   pos.forEach(p=>{_cf.push({amount:-(p.entry_px*p.shares),date:new Date(p.entry_date)});_cf.push({amount:getLTP(p)*p.shares,date:MARK_DATE});});
   _cf.sort((a,b)=>a.date-b.date);
   const _xr=xirrCalc(_cf);
@@ -176,9 +179,12 @@ function renderPublic(){
   const tfoot=`<tfoot><tr><td colspan="6" style="font-weight:700">TOTAL (${pos.length} positions)</td><td class="num">${inr(ti)}</td><td></td><td colspan="2"></td><td class="num">${inr(tv)}</td>
     <td class="num ${tpnl>=0?'g':'r'}">${tpnl>=0?'+':''}${inr(tpnl)}</td><td class="num ${tpct>=0?'g':'r'}">${tpct>=0?'+':''}${n(tpct)}%</td><td></td></tr></tfoot>`;
   const pendRows=PORTFOLIO.pending_buys.map(b=>`<tr style="background:#fffbeb"><td class="sym">${b.symbol}</td><td class="co">${b.company}</td><td>${pill(b.basket)}</td><td class="num">${n(b.signal_px)}</td><td class="num">${b.shares.toLocaleString('en-IN')}</td><td class="num">${inr(b.signal_px*b.shares)}</td><td class="num" style="color:#555;font-size:10px"><b>${n(b.trail_stop)}</b></td><td><span class="buy-tag">📋 EXEC AT OPEN</span></td></tr>`).join('');
-  const bookedRows=ct.map(t=>{const cost=t.amount/(1+t.pnl_pct/100);const entry_px=t.px/(1+t.pnl_pct/100);const pnl_amt=Math.round(cost*t.pnl_pct/100);
-    const cand=TRADE_LOG.filter(x=>x.type==='BUY'&&x.symbol===t.symbol&&x.date<=t.date).sort((a,b)=>a.date<b.date?-1:1);
-    const entry_date=cand.length?cand[cand.length-1].date:'--';
+  const bookedRows=ct.map(t=>{
+    const buy=entryBuy(t);
+    const entry_px=buy?buy.px:t.px/(1+t.pnl_pct/100);
+    const entry_date=buy?buy.date:'--';
+    const cost=bookedCost(t);
+    const pnl_amt=bookedPnl(t);
     return{symbol:t.symbol,basket:t.basket,entry_date,entry_px,cost,exit_date:t.date,exit_px:t.px,pnl_amt,pnl_pct:t.pnl_pct,shares:t.shares};
   }).sort((a,b)=>a.exit_date<b.exit_date?1:(a.exit_date>b.exit_date?-1:0));
   window.__BOOKED=bookedRows;
