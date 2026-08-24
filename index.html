@@ -31,8 +31,8 @@ const PORTFOLIO={
   _refreshedAt:"",
   regime_at_entry:"Bear",
   positions:[
-    {symbol:"CANBK",company:"Canara Bank",basket:"Finance",entry_px:130.0,shares:5448,ltp:129.53,_chg:0.35,entry_date:"2026-08-18",trail_stop:128.72,exit_pending:false,is_new:false,note:""},
-    {symbol:"BANKINDIA",company:"Bank of India",basket:"Finance",entry_px:142.1,shares:5026,ltp:142.7,_chg:0.71,entry_date:"2026-08-19",trail_stop:140.7,exit_pending:false,is_new:false,note:""}
+    {symbol:"CANBK",company:"Canara Bank",basket:"Finance",entry_px:130.0,shares:5448,ltp:129.96,_chg:0.33,entry_date:"2026-08-18",trail_stop:128.72,exit_pending:false,is_new:false,note:""},
+    {symbol:"BANKINDIA",company:"Bank of India",basket:"Finance",entry_px:142.1,shares:5026,ltp:142.79,_chg:0.06,entry_date:"2026-08-19",trail_stop:141.13,exit_pending:false,is_new:false,note:""}
   ],
   pending_buys:[]
 };
@@ -145,7 +145,7 @@ function renderPublic(){
   const pv=PORTFOLIO.capital+tb+tpnl;
   const cash=pv-tv;
   const pv_idx=(pv/PORTFOLIO.capital*100).toFixed(2);
-  const MARK_DATE=new Date('2026-08-20');
+  const MARK_DATE=new Date('2026-08-21');
   function xirrCalc(flows){if(flows.length<2)return null;const t0=flows[0].date;const yrs=flows.map(f=>(f.date-t0)/(365*24*3600*1000));const npv=r=>flows.reduce((s,f,i)=>s+f.amount/Math.pow(1+r,yrs[i]),0);let lo=-0.9999,hi=1000,flo=npv(lo),fhi=npv(hi);if(flo*fhi>0)return null;for(let k=0;k<300;k++){const mid=(lo+hi)/2,fm=npv(mid);if(Math.abs(fm)<1e-4)return mid;if(flo*fm<0){hi=mid;}else{lo=mid;flo=fm;}}return (lo+hi)/2;}
   const _cf=[];
   ct.forEach(t=>{const b=entryBuy(t);_cf.push({amount:-bookedCost(t),date:new Date(b?b.date:t.date)});_cf.push({amount:t.px*t.shares,date:new Date(t.date)});});
@@ -162,7 +162,7 @@ function renderPublic(){
     <div class="card"><div class="lbl">Cash</div><div class="val g">${inr(cash)}</div><div class="sub">${(cash/PORTFOLIO.capital*100).toFixed(1)}% idle</div></div>
     <div class="card"><div class="lbl">Open P&amp;L</div><div class="val ${tpnl>=0?'g':'r'}">${tpnl>=0?'+':''}${inr(tpnl)}</div><div class="sub">${tpnl>=0?'+':''}${n(tpct)}%</div></div>
     <div class="card"><div class="lbl">Booked P&amp;L</div><div class="val ${tb>=0?'g':'r'}">${tb>=0?'+':''}${inr(tb)}</div><div class="sub">${ct.length} closed trades</div></div>
-    <div class="card"><div class="lbl">Positions</div><div class="val">${pos.length}<span style="font-size:11px;color:#aaa">/8</span></div><div class="sub" style="color:#16a34a">2 exited at open · 6 free</div></div>
+    <div class="card"><div class="lbl">Positions</div><div class="val">${pos.length}<span style="font-size:11px;color:#aaa">/14</span></div><div class="sub" style="color:#16a34a">0 exited today · 12 free</div></div>
   </div>`;
   const trows=rows.map(r=>{const chg=r._chg??null;
     const ls=chg!=null?`<b>${n(r.cp)}</b> <span style="font-size:10px;color:${chg>=0?'#16a34a':'#dc2626'}">${chg>=0?'+':''}${chg.toFixed(2)}%</span>`:`<b>${n(r.cp)}</b>`;
