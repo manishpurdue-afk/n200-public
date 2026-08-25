@@ -2,7 +2,7 @@
 {
   "name": "N200 Public",
   "schemaVersion": 1,
-  "description": "N200 Momentum Strategy — simulated paper portfolio P&L view. Open positions, booked P&L and money-weighted return. Information only, not investment advice."
+  "description": "N200 Momentum Strategy — public P&L view. Paper portfolio, ₹1 Cr notional. Index 101.76 (24-Aug-2026 EOD). Booked +₹191.5K across 40 closed trades. 2 open positions (1 pending exit), 1 buy queued."
 }
 </script>
 <html lang="en">
@@ -31,10 +31,12 @@ const PORTFOLIO={
   _refreshedAt:"",
   regime_at_entry:"Bear",
   positions:[
-    {symbol:"CANBK",company:"Canara Bank",basket:"Finance",entry_px:130.0,shares:5448,ltp:129.96,_chg:0.33,entry_date:"2026-08-18",trail_stop:128.72,exit_pending:false,is_new:false,note:""},
-    {symbol:"BANKINDIA",company:"Bank of India",basket:"Finance",entry_px:142.1,shares:5026,ltp:142.79,_chg:0.06,entry_date:"2026-08-19",trail_stop:141.13,exit_pending:false,is_new:false,note:""}
+    {symbol:"CANBK",company:"Canara Bank",basket:"Finance",entry_px:130.0,shares:5448,ltp:127.3,entry_date:"2026-08-18",trail_stop:128.72,exit_pending:true,is_new:false,note:""},
+    {symbol:"BANKINDIA",company:"Bank of India",basket:"Finance",entry_px:142.1,shares:5026,ltp:142.0,entry_date:"2026-08-19",trail_stop:141.13,exit_pending:false,is_new:false,note:""}
   ],
-  pending_buys:[]
+  pending_buys:[
+    {symbol:"BEL",company:"Bharat Electronics",basket:"Industrials",signal_px:409.0,shares:1746,trail_stop:405.18,atr:7.63,breadth_pct:62.5,ma12:408.69,ma60:408.5,signal_date:"2026-08-24"}
+  ]
 };
 const TRADE_LOG=[
   {date:"2026-08-20",symbol:"POWERINDIA",type:"SELL",basket:"Industrials",px:34045.00,shares:20,amount:680900,status:"CLOSED",pnl_pct:-3.006,note:""},
@@ -145,7 +147,7 @@ function renderPublic(){
   const pv=PORTFOLIO.capital+tb+tpnl;
   const cash=pv-tv;
   const pv_idx=(pv/PORTFOLIO.capital*100).toFixed(2);
-  const MARK_DATE=new Date('2026-08-21');
+  const MARK_DATE=new Date('2026-08-24');
   function xirrCalc(flows){if(flows.length<2)return null;const t0=flows[0].date;const yrs=flows.map(f=>(f.date-t0)/(365*24*3600*1000));const npv=r=>flows.reduce((s,f,i)=>s+f.amount/Math.pow(1+r,yrs[i]),0);let lo=-0.9999,hi=1000,flo=npv(lo),fhi=npv(hi);if(flo*fhi>0)return null;for(let k=0;k<300;k++){const mid=(lo+hi)/2,fm=npv(mid);if(Math.abs(fm)<1e-4)return mid;if(flo*fm<0){hi=mid;}else{lo=mid;flo=fm;}}return (lo+hi)/2;}
   const _cf=[];
   ct.forEach(t=>{const b=entryBuy(t);_cf.push({amount:-bookedCost(t),date:new Date(b?b.date:t.date)});_cf.push({amount:t.px*t.shares,date:new Date(t.date)});});
@@ -162,7 +164,7 @@ function renderPublic(){
     <div class="card"><div class="lbl">Cash</div><div class="val g">${inr(cash)}</div><div class="sub">${(cash/PORTFOLIO.capital*100).toFixed(1)}% idle</div></div>
     <div class="card"><div class="lbl">Open P&amp;L</div><div class="val ${tpnl>=0?'g':'r'}">${tpnl>=0?'+':''}${inr(tpnl)}</div><div class="sub">${tpnl>=0?'+':''}${n(tpct)}%</div></div>
     <div class="card"><div class="lbl">Booked P&amp;L</div><div class="val ${tb>=0?'g':'r'}">${tb>=0?'+':''}${inr(tb)}</div><div class="sub">${ct.length} closed trades</div></div>
-    <div class="card"><div class="lbl">Positions</div><div class="val">${pos.length}<span style="font-size:11px;color:#aaa">/14</span></div><div class="sub" style="color:#16a34a">0 exited today · 12 free</div></div>
+    <div class="card"><div class="lbl">Positions</div><div class="val">${pos.length}<span style="font-size:11px;color:#aaa">/14</span></div><div class="sub" style="color:#dc2626">1 pending exit · 12 free</div></div>
   </div>`;
   const trows=rows.map(r=>{const chg=r._chg??null;
     const ls=chg!=null?`<b>${n(r.cp)}</b> <span style="font-size:10px;color:${chg>=0?'#16a34a':'#dc2626'}">${chg>=0?'+':''}${chg.toFixed(2)}%</span>`:`<b>${n(r.cp)}</b>`;
@@ -197,7 +199,7 @@ function renderPublic(){
   <div class="pnl-tbl-wrap"><table><thead><tr><th>Symbol</th><th>Company</th><th>Basket</th><th class="num">Signal Px</th><th class="num">Shares</th><th class="num">Notional</th><th class="num">Stop</th><th>Status</th></tr></thead><tbody>${pendRows}</tbody></table></div></div>`:''}
   <div class="pnl-table" style="margin-top:16px"><div style="display:flex;align-items:baseline;gap:14px;padding:0 2px 8px;border-bottom:2px solid #e5e7eb"><span style="font-size:13px;font-weight:700;color:#374151">Booked P&amp;L</span><span style="font-size:12px;color:${tb>=0?'#16a34a':'#dc2626'};font-weight:700">${tb>=0?'+':''}${inr(tb)}</span><span style="font-size:11px;color:#94a3b8">${bW}W/${bL}L</span></div>
   <div style="padding:8px 2px"><input id="booked-sym" placeholder="Filter symbol…" onkeyup="filterBooked()" style="padding:4px 8px;border:1px solid #dde1e7;border-radius:5px;font-size:11.5px;width:150px"></div>
-  <div class="pnl-tbl-wrap" id="booked-tbl-wrap">${buildBookedTable(bookedRows)}</div></div<div style="padding:12px 16px;margin-top:4px;font-size:10.5px;color:#94a3b8;line-height:1.5;border-top:1px solid #eef2f6">Disclaimer: For information only — not investment advice, an offer, or a solicitation. Simulated / paper portfolio: no client capital is managed and no live trades have been executed. Returns are hypothetical and gross of fees, taxes and transaction costs. Simulated and past performance is not indicative of future results; equity investments carry risk of loss.</div>`;}
+  <div class="pnl-tbl-wrap" id="booked-tbl-wrap">${buildBookedTable(bookedRows)}</div></div><div style="padding:12px 16px;margin-top:4px;font-size:10.5px;color:#94a3b8;line-height:1.5;border-top:1px solid #eef2f6">Disclaimer: For information only — not investment advice, an offer, or a solicitation. Simulated / paper portfolio: no client capital is managed and no live trades have been executed. Returns are hypothetical and gross of fees, taxes and transaction costs. Simulated and past performance is not indicative of future results; equity investments carry risk of loss.</div>`;}
 
 
 function initPnLCharts(){const pos=PORTFOLIO.positions;
