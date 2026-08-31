@@ -2,7 +2,7 @@
 {
   "name": "N200 Public",
   "schemaVersion": 1,
-  "description": "N200 Momentum Strategy — public P&L view. Paper portfolio, ₹1 Cr notional. Index 101.74 (28-Aug-2026 EOD). Booked +₹176.4K across 41 closed trades. 3 open positions, 2 pending exit."
+  "description": "N200 Momentum Strategy — public P&L view. Paper portfolio, ₹1 Cr notional. Index 101.72 (31-Aug-2026 open). Booked +₹164.2K across 43 closed trades. 1 open position, 0 pending exit."
 }
 </script>
 <html lang="en">
@@ -31,20 +31,20 @@ const PORTFOLIO={
   _refreshedAt:"",
   regime_at_entry:"Bear",
   positions:[
-    {symbol:"BANKINDIA",company:"Bank of India",basket:"Finance",entry_px:142.1,shares:5026,ltp:144.0,entry_date:"2026-08-19",trail_stop:144.14,exit_pending:true,is_new:false,note:""},
-    {symbol:"BEL",company:"Bharat Electronics",basket:"Industrials",entry_px:407.0,shares:1755,entry_date:"2026-08-25",trail_stop:408.64,exit_pending:false,is_new:false,ltp:411.9,note:""},
-    {symbol:"IDEA",company:"Vodafone Idea",basket:"Defensive",entry_px:15.12,shares:47241,entry_date:"2026-08-27",trail_stop:14.74,exit_pending:true,is_new:false,ltp:14.68,note:""}
+    {symbol:"BEL",company:"Bharat Electronics",basket:"Industrials",entry_px:407.0,shares:1755,entry_date:"2026-08-25",trail_stop:408.64,exit_pending:false,is_new:false,ltp:411.45,note:""}
   ],
   pending_buys:[]
 };
 const TRADE_LOG=[
-  {date:"2026-08-27",symbol:"IDEA",type:"BUY",basket:"Defensive",px:15.12,shares:47241,amount:714284,status:"OPEN",note:""},
+  {date:"2026-08-31",symbol:"IDEA",type:"SELL",basket:"Defensive",px:14.78,shares:47241,amount:698222,status:"CLOSED",pnl_pct:-2.2487,note:""},
+  {date:"2026-08-31",symbol:"BANKINDIA",type:"SELL",basket:"Finance",px:142.88,shares:5026,amount:718115,status:"CLOSED",pnl_pct:0.5489,note:""},
+  {date:"2026-08-27",symbol:"IDEA",type:"BUY",basket:"Defensive",px:15.12,shares:47241,amount:714284,status:"CLOSED",note:""},
   {date:"2026-08-25",symbol:"CANBK",type:"SELL",basket:"Finance",px:127.23,shares:5448,amount:693149,status:"CLOSED",pnl_pct:-2.1308,note:""},
   {date:"2026-08-25",symbol:"BEL",type:"BUY",basket:"Industrials",px:407.00,shares:1755,amount:714285,status:"OPEN",note:""},
   {date:"2026-08-20",symbol:"POWERINDIA",type:"SELL",basket:"Industrials",px:34045.00,shares:20,amount:680900,status:"CLOSED",pnl_pct:-3.006,note:""},
   {date:"2026-08-20",symbol:"LT",type:"SELL",basket:"Industrials",px:4050.50,shares:177,amount:716938,status:"CLOSED",pnl_pct:1.010,note:""},
   {date:"2026-08-19",symbol:"POWERINDIA",type:"BUY",basket:"Industrials",px:35100.00,shares:20,amount:702000,status:"CLOSED",note:""},
-  {date:"2026-08-19",symbol:"BANKINDIA",type:"BUY",basket:"Finance",px:142.10,shares:5026,amount:714195,status:"OPEN",note:""},
+  {date:"2026-08-19",symbol:"BANKINDIA",type:"BUY",basket:"Finance",px:142.10,shares:5026,amount:714195,status:"CLOSED",note:""},
   {date:"2026-08-19",symbol:"KOTAKBANK",type:"SELL",basket:"Finance",px:387.00,shares:1812,amount:701244,status:"CLOSED",pnl_pct:-1.527,note:""},
   {date:"2026-08-19",symbol:"IRCTC",type:"SELL",basket:"Growth",px:492.00,shares:1428,amount:702576,status:"CLOSED",pnl_pct:-1.590,note:""},
   {date:"2026-08-18",symbol:"CANBK",type:"BUY",basket:"Finance",px:130.00,shares:5448,amount:708240,status:"CLOSED",note:""},
@@ -149,7 +149,7 @@ function renderPublic(){
   const pv=PORTFOLIO.capital+tb+tpnl;
   const cash=pv-tv;
   const pv_idx=(pv/PORTFOLIO.capital*100).toFixed(2);
-  const MARK_DATE=new Date('2026-08-28');
+  const MARK_DATE=new Date('2026-08-31');
   function xirrCalc(flows){if(flows.length<2)return null;const t0=flows[0].date;const yrs=flows.map(f=>(f.date-t0)/(365*24*3600*1000));const npv=r=>flows.reduce((s,f,i)=>s+f.amount/Math.pow(1+r,yrs[i]),0);let lo=-0.9999,hi=1000,flo=npv(lo),fhi=npv(hi);if(flo*fhi>0)return null;for(let k=0;k<300;k++){const mid=(lo+hi)/2,fm=npv(mid);if(Math.abs(fm)<1e-4)return mid;if(flo*fm<0){hi=mid;}else{lo=mid;flo=fm;}}return (lo+hi)/2;}
   const _cf=[];
   ct.forEach(t=>{const b=entryBuy(t);_cf.push({amount:-bookedCost(t),date:new Date(b?b.date:t.date)});_cf.push({amount:t.px*t.shares,date:new Date(t.date)});});
@@ -166,7 +166,7 @@ function renderPublic(){
     <div class="card"><div class="lbl">Cash</div><div class="val g">${inr(cash)}</div><div class="sub">${(cash/PORTFOLIO.capital*100).toFixed(1)}% idle</div></div>
     <div class="card"><div class="lbl">Open P&amp;L</div><div class="val ${tpnl>=0?'g':'r'}">${tpnl>=0?'+':''}${inr(tpnl)}</div><div class="sub">${tpnl>=0?'+':''}${n(tpct)}%</div></div>
     <div class="card"><div class="lbl">Booked P&amp;L</div><div class="val ${tb>=0?'g':'r'}">${tb>=0?'+':''}${inr(tb)}</div><div class="sub">${ct.length} closed trades</div></div>
-    <div class="card"><div class="lbl">Positions</div><div class="val">${pos.length}<span style="font-size:11px;color:#aaa">/8</span></div><div class="sub" style="color:#dc2626">2 exit pending · 5 free</div></div>
+    <div class="card"><div class="lbl">Positions</div><div class="val">${pos.length}<span style="font-size:11px;color:#aaa">/8</span></div><div class="sub" style="color:#16a34a">0 exit pending · 7 free</div></div>
   </div>`;
   const trows=rows.map(r=>{const chg=r._chg??null;
     const ls=chg!=null?`<b>${n(r.cp)}</b> <span style="font-size:10px;color:${chg>=0?'#16a34a':'#dc2626'}">${chg>=0?'+':''}${chg.toFixed(2)}%</span>`:`<b>${n(r.cp)}</b>`;
